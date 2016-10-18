@@ -1,0 +1,187 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication8
+{
+
+    public class Car
+    {
+        public double cenapaliwa;
+        public double kosztprzejazdu;
+        public double spalanie;
+        public string marka;
+        public int rok;
+        public string model;
+        public int iloscDrzwi;
+        public double pojemnoscSilnika;
+        public double srednieSpalanie;
+        public static int iloscsamochodow = 0;
+        public double dlugosctrasy;
+        public double obliczspalanie;
+    }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine(" ");
+            Console.WriteLine("Zadania domowe z lekcji drugiej. Wybierz odpowiednia litere aby przejsc do danego zadania: ");
+            Console.WriteLine(" ");
+            Console.WriteLine("[A] - Program napisany w trakcie zajec - klasy, samochod");
+            Console.WriteLine("1.Utworzyc prywatne pola klasy car o nazwie :- Model- Ilosc drzwi - Pojemnosc silnika- Srednie spalanie - utworzone na lekcji ");
+            Console.WriteLine("2.Narysowac dla klasy car diagram UML - utworzone na lekcji. PPM na ConsoleApplication2 --> Add new item  --> class diagram");
+            Console.WriteLine("3.Utworzyc o ile nie jest to zrobione jeszcze, wlasciwosci dostepowe (zeby mozna bylo miec dostep do nich) dla wszystkich pol w klasie car. W oknie ClassDiagram2.cd klikamy po kolei na zmienne i zmieniamy Modifier z private na public.");
+            Console.WriteLine("4.Utworzyc w klasie car prywatnego statycznego pola typu int o nazwie ilosc samochodow i przypisanie mu wartosci 0. -->   private static int iloscsamochodow = 0;");
+            Console.WriteLine("[B] - Spalanie / 100.");
+            Console.WriteLine("[C] - Obliczanie kosztu przejazdu.");
+ 
+  
+
+
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    string carName = "Moj samochod";
+                    Console.WriteLine("Nazwa samochodu:");
+                    Console.WriteLine(" ");
+                    Console.Write(carName);
+                    Console.WriteLine(" ");
+
+                    Car car1 = new Car();
+
+                    car1.marka = "Samochod Marka";
+                    car1.rok = 2000;
+                    Console.WriteLine("Marka z klasy samochodu 1: ");
+                    Console.Write(car1.marka);
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Rok produkcji1: ");
+                    Console.Write(car1.rok);
+                    Console.WriteLine(" ");
+
+                    Car car2 = new Car();
+
+                    car2.marka = "Samochod Marka2";
+                    car2.rok = 1998;
+                    Console.WriteLine("Marka z klasy samochodu 2: ");
+                    Console.Write(car2.marka);
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Rok produkcji2: ");
+                    Console.Write(car2.rok);
+                    Console.WriteLine(" ");
+
+
+
+                    car1 = car2;
+                    Console.WriteLine("Marka: {0} \n Rok Produkcji {1}", car1.marka, car1.rok);
+                    Console.WriteLine("Marka: {0} \n Rok Produkcji {1}", car2.marka, car2.rok);
+                    Console.WriteLine(" ");
+
+                    Car car3 = new Car();
+                    Console.WriteLine("Podaj maske");
+                    car3.marka = Console.ReadLine();
+                pytania:
+                    Console.WriteLine("Podaj rok");
+                    car3.rok = int.Parse(Console.ReadLine());
+                    if (car3.rok < 1885 || car3.rok > 2016)
+                    {
+                        Console.WriteLine("podano zly rok");
+                        goto pytania;
+                    }
+                    Console.WriteLine("Marka: {0} Rok: {1} ", car3.marka, car3.rok);
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+
+                case "b":
+                case "B":
+
+
+                    Console.WriteLine(" ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Obliczanie sredniego spalanie na podstawie wzoru: spalanie = (sredniaSpalanie * dlugosc trasy )/100.0");
+                    Console.WriteLine(" ");
+                    Car car4 = new Car();
+                    Console.WriteLine("Podaj marke: ");
+                    car4.marka = Console.ReadLine();
+                pytania2:
+                    Console.WriteLine("Podaj rok");
+                    car4.rok = int.Parse(Console.ReadLine());
+                    if (car4.rok < 1885 || car4.rok > 2016)
+                    {
+                        Console.WriteLine("podano zly rok");
+                        goto pytania2;
+                    }
+                    Console.WriteLine("Marka: {0} Rok: {1} ", car4.marka, car4.rok);
+                    Console.WriteLine("Podaj srednie spalanie dla swojego samochodu: ");
+                    car4.srednieSpalanie = double.Parse(Console.ReadLine());
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Twoje dane: Marka: {0} Rok: {1} Srednie Spalanie: {2}", car4.marka, car4.rok, car4.srednieSpalanie);
+                    Console.WriteLine("Podaj dlugosc trasy: ");
+                    car4.dlugosctrasy = double.Parse(Console.ReadLine());
+                    car4.spalanie = (car4.srednieSpalanie * car4.dlugosctrasy) / 100.0;
+                    Console.WriteLine("Srednie spalanie twojego samochodu (w zaleznosci od dlugosci trasy) wynosi : {0}/{1}", car4.spalanie, car4.dlugosctrasy);
+
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+                case "c":
+                case "C":
+
+                    Console.WriteLine(" ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Obliczanie kosztu przejazdu.kosztprzejazdu = spalanie* cenaPaliwa");
+                    Car car5 = new Car();
+                    Console.WriteLine("Podaj srednie spalanie dla swojego samochodu: ");
+                    car5.srednieSpalanie = double.Parse(Console.ReadLine());
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Srednie Spalanie: {0}", car5.srednieSpalanie);
+                    Console.WriteLine("Podaj dlugosc trasy: ");
+                    car5.dlugosctrasy = double.Parse(Console.ReadLine());
+                    car5.spalanie = (car5.srednieSpalanie * car5.dlugosctrasy) / 100.0;
+                    Console.WriteLine("Srednie spalanie twojego samochodu (w zaleznosci od dlugosci trasy) wynosi : {0}/{1}", car5.spalanie, car5.dlugosctrasy);
+                    Console.WriteLine("Podaj cene paliwa: ");
+                    car5.cenapaliwa = double.Parse(Console.ReadLine());
+                    car5.kosztprzejazdu = car5.spalanie * car5.cenapaliwa;
+                    Console.WriteLine("Koszt tego przejazdu bedzie wynosic: {0}", car5.kosztprzejazdu);
+
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+
+                    Console.ReadKey();
+            }
+            /*
+             mozna zapetli bez goto [etykieta]
+             *do{ podaj rok} while(car3.rok < 1885 ... )
+             */
+
+
+
+
+        }
+    }
+}
