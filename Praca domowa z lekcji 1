@@ -1,0 +1,246 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine(" ");
+            Console.WriteLine("Zadania domowe z lekcji pierwszej. Wybierz odpowiednia litere aby przejsc do danego zadania: ");
+            Console.WriteLine(" ");
+            Console.WriteLine("[A] - rozwiazac rownanie liniowe w postaci Ax+B=0 , x= -B/A , wypadek w ktorym a bedzie zerem to wtedy rownanie x+B=0");
+            Console.WriteLine("[B] - rozwiazac rownanie kwadratowe Ax^2 + Bx + C = 0 w wypadku gdy A rozne od 0 delte i w zaleznosci od delty kilka wypadkow sqrt");
+            Console.WriteLine("[C] - Policzyc sume liczb od a do b w zaleznosci od tego ktore jest wieksze ( czyli od b do a) ");
+            Console.WriteLine("[D] - Policzyc sume ciagu wczytywanych liczb zakonczonego zerem ");
+            Console.WriteLine("[E] - Wypisac liczby parzyste od a do b albo od b do a w zaleznosci ktore jest wieksze ");
+            Console.WriteLine("[F] - Policzyc silnie z liczby a");
+            Console.WriteLine("[G] - Wypisac liczby podzielne przez 3 z zakresu od a do b");
+            string litera = Console.ReadLine();
+
+
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                    double wynik, a, b;
+                    a = 0;
+                    b = 0;
+                    wynik = 0;
+                    Console.WriteLine("Podaj liczby a i b . Ax+b=0");
+                    Console.WriteLine("Podaj wartosc a");
+                    a = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj wartosc b");
+                    b = double.Parse(Console.ReadLine());
+                    if (a == 0) { wynik = -b; Console.WriteLine("Wynik (a = 0): "); Console.WriteLine(wynik); }
+                    else { wynik = -b / a; Console.WriteLine("Wynik (a rozne od zera: "); Console.WriteLine(wynik); }
+
+
+
+                    /*    if (a == 0)
+                            if (b == 0)
+                                Console.WriteLine("Równanie tożsamościowe");
+                            else
+                                Console.WriteLine("Równanie sprzeczne");
+                        else
+                            Console.WriteLine("Rozwiązanie równania: " + -b / a);*/              
+                    break;
+
+                case "b":
+                case "B":
+                    double a1, b1, c1, x1, x2, wynik1, delta1;
+                    a1 = 0;
+                    b1 = 0;
+                    c1 = 0;
+                    x1 = 0;
+                    x2 = 0;
+                    wynik1 = 0;
+                    delta1 = 0;
+                    Console.WriteLine("Podaj liczby a,b i c. Rownanie kwadratowe");
+                    Console.WriteLine("Podaj wartosc a");
+                    a1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj wartosc b");
+                    b1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj wartosc c");
+                    c1 = double.Parse(Console.ReadLine());
+                    delta1 = (b1 * b1) - (4 * a1 * c1);
+                    if (delta1 == 0) { Console.WriteLine("Delta wyszla rowna 0"); wynik1 = -b1 / 2 * a1; Console.WriteLine("Wynik: "); Console.WriteLine(wynik1); }
+                    if (delta1 < 0) { Console.WriteLine("Delta ujemna. Rownanie sprzeczne. Brak wynikow"); }
+                    if (delta1 > 0) { Console.WriteLine("Delta wieksza od zera: "); x1 = (-b1 - Math.Sqrt(delta1)) / (2 * a1); x2 = (-b1 - Math.Sqrt(delta1)) / (2 * a1); Console.WriteLine("Wartosc x1: "); Console.WriteLine(x1); Console.WriteLine("Wartosc x2: "); Console.WriteLine(x2); }
+                    else { Console.WriteLine("Nieprawidlowe dane"); }
+                    break;
+
+                case "c":
+                case "C":
+                    int a2, b2, i2, wynik2;
+                    a2 = 0;
+                    b2 = 0;
+                    i2 = 0;
+                    wynik2 = 0;
+                    Console.WriteLine("Podaj liczby a i b. Liczenie sumy liczb od a do b");
+                    Console.WriteLine("Podaj wartosc a");
+                    a2 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj wartosc b");
+                    b2 = int.Parse(Console.ReadLine());
+                    if (a2 < b2)
+                    {
+                        for (i2 = a2; i2 <= b2; i2++) { wynik2 += i2; }
+                        Console.WriteLine("a mniejsze od b : "); Console.WriteLine(wynik2);
+                    }
+
+                    if (a2 > b2)
+                    {
+                        for (i2 = b2; i2 <= a2; i2++) { wynik2 += i2; }
+                        Console.WriteLine("a wieksze od b : "); Console.WriteLine(wynik2);
+                    }
+                    break;
+
+                case "d":
+                case "D":
+                    int a3, wynik3;
+                    a3 = 0;
+                    wynik3 = 0;
+                    do
+                    {
+                        Console.WriteLine("Podaj liczby do sumowania. Zero zakonczy dzialanie");
+                        a3 = int.Parse(Console.ReadLine());
+                        wynik3 = wynik3 + a3;
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Wynik sumowania: ");
+                        Console.WriteLine(" ");
+                        Console.WriteLine(wynik3);
+
+                    }
+                    while (a3 != 0);
+             
+                               
+
+                    break;
+
+
+                case "e":
+                case "E":
+                    int a4, b4, i4;
+                    a4 = 0;
+                    b4 = 0;                   
+                    i4 = 0;
+                    Console.WriteLine("Podaj liczby a i b . Zostana wypisane parzyste");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Podaj liczbe a");
+                    a4 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj liczbe b");
+                    b4 = int.Parse(Console.ReadLine());
+
+                    if (a4 > b4)
+                    {
+                        Console.WriteLine("Twoje liczby parzyste dla a wiekszego od b to: ");
+
+                        for (i4 = a4; i4 >= b4; i4--)
+                        {
+
+
+
+                            if (i4 % 2 == 0)
+                            {                                
+                                Console.WriteLine(i4);
+                            }
+                        }
+                    }
+
+
+                    if (a4 < b4)
+                    { Console.WriteLine("Twoje liczby parzyste dla a mniejszego od b to: ");
+                        for (i4 = a4; i4 <= b4; i4++)
+                        {
+
+
+                            if (i4 % 2 == 0)
+                            {                             
+                                Console.WriteLine(i4);
+                            }
+                        }
+                    }
+
+                    break;
+
+                case "f":
+                case "F":
+                    int a5, silnia, i5;
+                    a5 = 0;
+                    i5 = 0;
+                    silnia = 1;
+                    Console.WriteLine("Podaj liczbe a. Zostanie obliczona silnia z tej liczby: ");
+                    a5 = int.Parse(Console.ReadLine());
+                    if (a5 == 0) { Console.WriteLine("a = 0. Silnia wynosi 0"); }
+                    else {
+                        for (i5 = 1; i5 <= a5; i5++) { Console.WriteLine("Silnia z liczby {0} w kolejnyhch krokach wynosi wynosi: ", a5); silnia *= i5; Console.WriteLine(silnia); }
+
+                    }
+              
+                    break;
+   
+                
+                case "g":
+                case "G":
+                    int a6, b6, i6;
+                    a6 = 0;
+                    b6 = 0;
+                    i6 = 0;
+                    Console.WriteLine("Podaj liczby a i b a zostana wypisane liczby podzielne przez 3 w zaleznosci ktora z podanych liczb jest wieksza: ");
+
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Podaj liczbe a");
+                    a6 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj liczbe b");
+                    b6 = int.Parse(Console.ReadLine());
+
+                    if (a6 > b6)
+                    {
+                        Console.WriteLine("Twoje liczby podzielne przez 3 dla a wiekszego od b to: ");
+
+                        for (i6 = a6; i6 >= b6; i6--)
+                        {
+
+
+
+                            if (i6 % 3 == 0)
+                            {                                
+                                Console.WriteLine(i6);
+                            }
+                        }
+                    }
+
+
+                    if (a6 < b6)
+                    { Console.WriteLine("Twoje liczby podzielne przez 3 dla a mniejszego od b to: ");
+                        for (i6 = a6; i6 <= b6; i6++)
+                        {
+
+
+                            if (i6 % 3 == 0)
+                            {                             
+                                Console.WriteLine(i6);
+                            }
+                        }
+                    }
+
+
+                    break;
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    break;
+
+            }
+
+            Console.ReadKey();
+
+
+        }
+    }
+}
