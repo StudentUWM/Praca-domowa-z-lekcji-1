@@ -1,0 +1,131 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int x;
+            x = 5;
+            int a, b, wynik;
+            a = 4;
+            b = 1;
+            wynik = 2 * a - 3 * b;
+
+            int a2, b2, wynik2;
+            a2 = 7;
+            b2 = 10;
+            wynik2 = 3 * a2 + 2 * b2;
+
+
+            int a3, b3, wynik3,a5,b5;
+         
+           
+
+            double F, C;
+
+
+            double x2, y2;
+
+            int a4, b4;
+
+            int wynik4,wynik6;
+            wynik4 = 0;
+
+            Console.WriteLine("Witaj swiecie"); // roflmao
+            Console.WriteLine("Pierwszy program w C#");
+            /* komentarz blokowy */
+
+            Console.WriteLine("Wartosc x:"); 
+            Console.WriteLine(x);
+
+            Console.WriteLine("Wartosc dla a = 4 i b = 1:");
+            Console.WriteLine(wynik);
+
+
+            Console.WriteLine("Wartosc dla A = 7 i B = 10: Wzorek ");
+            Console.WriteLine(wynik2);
+
+
+
+            Console.WriteLine("przyklad z zamiana temperatury");
+            Console.WriteLine("Podaj temp w stopniach Fahrenheita");
+            F = double.Parse(Console.ReadLine());
+            C = 5 / 9 * (F - 32);
+            Console.WriteLine("Podana temperatura przez Ciebie w stopniach C wynosi:");
+            Console.WriteLine(C);
+
+
+            Console.WriteLine("Wzorek [3 * a + 2 * B] ale sami podajemy wartosc dla a i b");
+            Console.WriteLine("Podaj wartosc a");
+            a3 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj wartosc b");
+            b3 = int.Parse(Console.ReadLine());
+            wynik3 = 3 * a3 + 2 * b3;
+            Console.WriteLine("Dla podanych wartosc przez Ciebie dla a i b [wzorek] ");
+            Console.WriteLine(wynik3);
+
+
+            Console.WriteLine("Podaj x (wieksze od 0):");
+            x2 = Convert.ToDouble(Console.ReadLine());
+            y2 = Math.Sqrt(Math.Abs(Math.Sin(x2)) * Math.Log(x2, 2.0));
+            Console.WriteLine("Wzorek z przykladu 2.5:");
+            Console.WriteLine(y2);
+
+
+
+            Console.WriteLine("Podaj liczby a i b . [porownanie ktora wieksza lub rowna]: ");
+            Console.WriteLine("Podaj wartosc a");
+            a4 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj wartosc b");
+            b4 = int.Parse(Console.ReadLine());
+            if (a4 < b4) { Console.WriteLine("Liczba {0} jest mniejsza od {1}", a4,b4); }
+            if (a4 > b4) { Console.WriteLine("Liczba {0} jest wieksza od {1}", a4,b4); }
+            if (a4 == b4) { Console.WriteLine("Liczba {0} jest rowna {1}", a4,b4); }
+
+            for (int i = 1; i < 10; i++ )
+            { Console.WriteLine("Linijka tekstu nr {0}",i); }
+
+
+            for (int i2 = 1; i2 <= 5; i2++)
+                for (int j = 1; j <= 5; j++)
+                    Console.WriteLine("i = {0}, j = {1}", i2, j);
+
+
+
+            Console.WriteLine("Suma liczb naturalnych od 1 do 10 przy pomocy petli for: ");
+            for (int n = 1; n < 11; n++) {wynik4 = wynik4 + n; }
+            Console.WriteLine(wynik4);
+
+
+
+            Console.WriteLine("Suma liczb naturalnych od 1 do 10 przy pomocy petli while: ");
+            int i3 = 1;
+            int wynik5 = 0;
+            while (i3 < 11) { wynik5 = wynik5 + i3; i3++; }
+            Console.WriteLine(wynik5);
+
+
+            Console.WriteLine("Podajesz A i B i dzieli A przez B ");
+            Console.WriteLine("Podaj wartosc a");
+            a5 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj wartosc b");
+            b5 = int.Parse(Console.ReadLine());
+            if (b5 == 0) { Console.WriteLine("NIE DZIELIMY PRZEZ ZERO"); }
+            else { wynik6 = a5 / b5; }
+            Console.WriteLine("Wynik dzielenia a przez b wynosi: ");
+            Console.WriteLine(wynik6);
+
+
+                Console.ReadKey();
+
+
+        }
+    }
+}
