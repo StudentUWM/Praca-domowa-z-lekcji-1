@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Wyjatki
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int liczba1,liczba2,liczba3;
+           // liczba1 = 30 / 0;
+            Console.WriteLine("Dzielenie przez zero, podaj liczbe a: ");
+            liczba2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("podaj liczbe b: ");
+            liczba3 = int.Parse(Console.ReadLine());
+           // liczba1 = liczba2 / liczba3;
+      
+   
+      try
+      {
+          liczba1 = liczba2 / liczba3;
+          Console.WriteLine("Wynik : {0}", liczba1);
+      }
+      catch(Exception e)
+      {
+         Console.WriteLine("Nie lubie dzielic przez zero");
+         Console.WriteLine(" ");
+         Console.WriteLine(" ");
+         Console.WriteLine(e.Message);
+         Console.WriteLine(e.Source);
+         Console.WriteLine(e.Data);
+         Console.WriteLine(e.TargetSite);
+         Console.WriteLine(e.StackTrace);
+       
+        }
+      finally
+      {
+          Console.WriteLine("FINALLY");
+      }
+
+            Console.ReadKey();
+        }
+    }
+}
