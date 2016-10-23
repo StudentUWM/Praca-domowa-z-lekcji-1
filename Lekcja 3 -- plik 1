@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms; // PPM References i wybieramy z listy windows forms
+
+
+
+namespace ConsoleApplication12
+{
+    class Program
+    {
+        class Car // sama klasa
+        {
+            public double pojemnoscSilnika;
+            public string marka;
+            public double model;
+            public static int iloscKol;
+
+            static Car() { iloscKol = 4; } // zadanie z iloscia kol
+            static public Car CarCreate() // carcreate
+            {
+                Car c = new Car();
+                return c;
+            }
+            ~Car()//destruktor
+            {
+                MessageBox.Show("Zwalniam pamiec");
+            }
+
+        }
+
+        class model // do konstruktora
+        {
+           
+            public string marka;
+            public double model;
+            public model(string n, double z)
+            {
+                marka = n;
+                model = z;
+            }
+            public void pokazmarke()
+            {
+                Console.WriteLine("{0,-15} {1,10}", marka, model);
+            }
+            class samochod //przeciazenie
+            {
+                public double pojemnoscSilnika;
+                public string marka;
+          
+                public samochod(double pojemnoscSilnika, string marka)
+                {
+                    this.pojemnoscSilnika = pojemnoscSilnika;
+                    this.marka = marka;
+                }
+
+            }
+
+        }
+
+
+        
+        static void Main(string[] args)
+        { 
+            Console.WriteLine("obiekt typu car: ");
+            Car car1 = new Car();
+            Console.WriteLine("podaj pojemnosc silnika: ");
+            car1.pojemnoscSilnika = double.Parse(Console.ReadLine());
+            Console.WriteLine("podaj marke: ");
+            car1.marka = Console.ReadLine();
+            Console.WriteLine("podaj model: ");
+            car1.model = double.Parse(Console.ReadLine());
+            Console.WriteLine("Wynik pracy samej klasy car: Marka: {0} Model: {1} Pojemnsoc Silnika: {2}", car1.marka, car1.model, car1.pojemnoscSilnika);
+
+
+            Console.WriteLine("konstruktor: ");
+            model model1 = new model("Model 1", 111);
+            model1.pokazmarke();
+
+            Console.WriteLine("Przeciazenie: ");
+         //   Console.WriteLine("Pojemnosc silnika: {0} Marka: {1}", samochod.pojemnoscSilnika, samochod.marka);
+              Console.WriteLine("Ilosc Kol: {0} ", Car.iloscKol);
+
+              Car.CarCreate();
+
+            Console.ReadKey();
+        }
+  
+    }
+}
