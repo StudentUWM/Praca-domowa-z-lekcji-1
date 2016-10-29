@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication18
+{
+    class Program
+    {
+        // zad 1 utworzyc nowy projekt o nazwie rzutowanie . Stworzyc 3 klasy. BaseClass, DerrivedClass, NextDerrivedClass. Derrived ma dziedziczyc po base a nextderrived po derrived.
+        //Utworzyc obiekt klasy baseclass a nastepnie sprobowac go zrzutowac na obiekty innych klas. Jakie rzutowanie jest dozwolone i dlaczego?
+    
+        class BaseClass{
+                public string imie;
+                public string nazwisko;
+                public int rok_urodzenia;
+                public int wiek;
+
+                public BaseClass(string n, string z, int x)//konstruktor
+            {
+                imie = n;
+                nazwisko = z;
+                rok_urodzenia = x;
+            }
+            public void pokazosobe()
+            {
+                Console.WriteLine("imie: {0},nazwisko: {1}, rok urodzenia: {2}", imie, nazwisko, rok_urodzenia);
+            }
+            public BaseClass(int x1)//konstruktor2
+            {
+                wiek = x1;
+           
+            }
+            public void obliczwiek()
+            {
+                wiek = DateTime.Now.Year - rok_urodzenia;
+                Console.WriteLine("Aktualny wiek osoby: {0}", wiek);
+            }
+            }
+        class DerrievedClass: BaseClass
+        {
+
+        }
+        class NextDerrievedClass: DerrievedClass
+        {
+
+        }
+        static void Main(string[] args)
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("konstruktor do osoby z obliczonym wiekiem: ");
+            BaseClass osoba = new BaseClass("Ktos", "Ktosinski", 1980);       
+            osoba.pokazosobe();
+            osoba.obliczwiek();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkRed;         
+          //  BaseClass osoba2 = new BaseClass("Ktos2", "Ktosinski2", 1980);       
+       //    osoba2.pokazosobe();
+       //     osoba2.obliczwiek();
+            Console.WriteLine("rzutowanie: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            DerrievedClass osoba2 =(DerrievedClass)osoba2;    
+            //osoba2.pokazosobe();
+          //  osoba2.obliczwiek();
+
+        }
+          Console.ReadKey();
+    }    
+}
