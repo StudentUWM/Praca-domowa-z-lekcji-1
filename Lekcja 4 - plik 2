@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace ConsoleApplication3
+{
+    public class miasto
+    {
+        public int cenazametr;
+        public int liczbaLudnosci;
+        public string nazwaMiasta;
+        public double PodajCeneZaMetr()
+        {
+            if (liczbaLudnosci >= 1000000) { cenazametr = 25000; return cenazametr; }
+            else if (liczbaLudnosci >= 700000 & liczbaLudnosci <= 1000000) { cenazametr = 15000; return cenazametr; }
+            else if (liczbaLudnosci >= 400000 & liczbaLudnosci <= 700000) { cenazametr = 10000; return cenazametr; }
+            else if (liczbaLudnosci >= 200000 & liczbaLudnosci <= 400000) { cenazametr = 5000; return cenazametr; }
+            else if (liczbaLudnosci >= 100000 & liczbaLudnosci <= 200000) { cenazametr = 2000; return cenazametr; }
+            else { cenazametr = 1000; return cenazametr; }
+        }
+    }
+
+
+ 
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+        poczatek:
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine(" ");
+            Console.WriteLine("miasto: ");
+            Console.WriteLine(" ");
+            Console.WriteLine("[A] - miasto");
+            Console.WriteLine("[B] - wyjscie z aplikacji");
+
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(" ");
+                    miasto miasto1 = new miasto();
+                    Console.WriteLine("Podaj nazwe miasta: ");
+                    miasto1.nazwaMiasta = Console.ReadLine();
+                    Console.WriteLine("Podaj liczbe mieszkanow: ");
+                    miasto1.liczbaLudnosci = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Dla miasta o nazwie: {0} o liczbie mieszkancow {1} cena za metro wynosi: {2}", miasto1.nazwaMiasta, miasto1.liczbaLudnosci, miasto1.PodajCeneZaMetr());
+
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+                    Application.Exit();
+                    break;
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+            }
+            Console.ReadKey();
+
+        }
+    }
+}
