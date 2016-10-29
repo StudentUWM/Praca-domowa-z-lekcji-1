@@ -1,0 +1,148 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication16
+{
+    class Program
+    { 
+        class osoba{
+                public string imie;
+                public string nazwisko;
+                public int rok_urodzenia;
+                public int wiek;
+
+                public osoba(string n, string z, int x)//konstruktor
+            {
+                imie = n;
+                nazwisko = z;
+                rok_urodzenia = x;
+            }
+            public void pokazosobe()
+            {
+                Console.WriteLine("imie: {0},nazwisko: {1}, rok urodzenia: {2}", imie, nazwisko, rok_urodzenia);
+            }
+            public osoba(int x1)//konstruktor2
+            {
+                wiek = x1;
+           
+            }
+            public void obliczwiek()
+            {
+                wiek = DateTime.Now.Year - rok_urodzenia;
+                Console.WriteLine("Aktualny wiek osoby: {0}", wiek);
+            }
+            }
+
+        class student
+        {
+                public int nr_grupy;
+                public int nr_albumu;
+                public string miejsce_zamieszkania;
+            
+              
+
+                public student(int a, int b, string c)//konstruktor
+            {
+               nr_grupy = a;
+               nr_albumu = b;
+               miejsce_zamieszkania = c;
+
+            }
+
+            public void pokazstudenta()
+            {
+                Console.WriteLine("nr_grupy: {0}, nr_albumu: {1}, miejsce zamieszkania: {2}", nr_grupy, nr_albumu, miejsce_zamieszkania);
+            }
+            }
+      //  class student_pierwszego_roku : student { }
+        
+        static void Main(string[] args)
+        {
+            
+            // utworzyc klase osoba z polami imie, nazwisko rok urodzenia dodac konstruktor ustawiajacy wartosci pol
+            // za pomoca parametrow dodac metode WypiszInfo() wyswietlajaca wartosci pol
+            //zad2 utworzyc potommna klase student z dodatkowymi polami rok numer grupy nr albumu  utworzyc konstruktory
+            // WypiszInfo metoda
+            // fb kod z tablicy 
+            // zad3 ustawic modyfikatory dostepu w klasie rodzica na protected---------------------------------------------------------------------------------
+            // zad4 w klasie osoba dodac metode obliczwiek(), nastepnie stworzyc obiekt z klasy student i sprobowac na nim wywolac metode ObliczWiek()
+            // zad5 w klasie osoba dodac pole miejsce_zamieszkania z modyfikatorem private . sprobowac je wywolac dla obiektu z klasy student. poprawic kod aby wszystko
+            //dzialalo
+            // zad6 chcemy utworzyc klase student_pierwszego_roku , po czym powinna dziedziczyc 
+            // czy jesli bedzie dziedziczyla po klasie student, to otrzyma dostep do pol i metod klasy osoba?
+            // Jak nalezy rozumiec okreslenie drzewo dziedziczenia?
+            /* Dziedziczenie jest jedną z fundamentalnych cech podejścia obiektowego. Pozwala kojarzyć klasy obiektów w hierarchie klas. Te hierarchie, w zależności od
+             * użytego języka programowania, mogą przyjmować postać drzew, lasów drzew, bądź skierowanych grafów acyklicznych. W Javie hierarchia dziedziczenia dla klas
+             * ma postać drzewa. 
+             * Jej korzeniem jest klasa Object. Jest niesłychanie wygodnie mieć taką jedną wspólną nadklasę dla wszystkich klas występujących w programie.
+             * Realizacja dziedziczenia polega na tym, że klasa dziedzicząca dziedziczy po swojej nadklasie wszystkie jej atrybuty i metody (i nie ma znaczenia, czy te 
+             * atrybuty i metody były zadeklarowane bezpośrednio w tej nadklasie, czy ona też odziedziczyła je po swojej z kolei nadklasie).*/
+            // zad 7 stworzyc dwa obiekty typu student, np student1 i student2, oraz dwa obiekty typu osoba,np osoba1 i osoba2. Sprobowac przypisac osobe do studenta
+            //oraz studenta do osoby i zobaczyc co sie stanie. prawdzic w Debbugerze, czy cos sie zmienilo w momencie przyisania?
+            // zad 8 utworzyc nowy projekt o nazwie rzutowanie . Stworzyc 3 klasy. BaseClass, DerrivedClass, NextDerrivedClass. Derrived ma dziedziczyc po base a nextderrived po derrived.
+            //Utworzyc obiekt klasy baseclass a nastepnie sprobowac go zrzutowac na obiekty innych klas. Jakie rzutowanie jest dozwolone i dlaczego?
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("konstruktor do osoby: ");
+            osoba osoba1 = new osoba("Ktos", "Ktosinski", 1940);
+            osoba1.pokazosobe();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("konstruktor do studenta: ");
+            student student1 = new student(5, 199454, "Olsztyn");
+            student1.pokazstudenta();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("konstruktor do osoby z obliczonym wiekiem: ");
+            osoba osoba2 = new osoba("Ktos", "Ktosinski", 1980);       
+            osoba2.pokazosobe();
+            osoba2.obliczwiek();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("konstruktor do studenta: ");
+            student student2 = new student(5, 199454, "Olsztyn");
+            student2.pokazstudenta();
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("[DEF] Dziedziczenie, drzewo: \n");
+            Console.WriteLine(" Dziedziczenie jest jedną z fundamentalnych cech podejścia obiektowego. Pozwala kojarzyć klasy obiektów w hierarchie klas. Te hierarchie, w zależności od użytego języka programowania, mogą przyjmować postać drzew, lasów drzew, bądź skierowanych grafów acyklicznych. W Javie hierarchia dziedziczenia dla klas ma postać drzewa. Jej korzeniem jest klasa Object. Jest niesłychanie wygodnie mieć taką jedną wspólną nadklasę dla wszystkich klas występujących w programie. Realizacja dziedziczenia polega na tym, że klasa dziedzicząca dziedziczy po swojej nadklasie wszystkie jej atrybuty i metody (i nie ma znaczenia, czy te atrybuty i metody były zadeklarowane bezpośrednio w tej nadklasie, czy ona też odziedziczyła je po swojej z kolei nadklasie).");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Zadanie : Student 1-wszego roku i osoby x2 : \n");
+            osoba osoba3 = new osoba("Ktos3", "Ktosinski3", 1945);
+            osoba3.pokazosobe();
+            osoba3.obliczwiek();
+            osoba osoba4 = new osoba("Ktos4", "Ktosinski4", 1958);
+            osoba4.pokazosobe();
+            osoba4.obliczwiek();
+            student student3 = new student(2, 198043, "Olsztyn");
+            student3.pokazstudenta();
+            student student4 = new student(1, 128023, "Gdansk");
+            student4.pokazstudenta();
+         //   student4 = osoba4;
+        //    student4 = (student)osoba4;
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            
+
+
+
+            Console.ReadKey();
+
+            }
+   
+        }
+}
+
