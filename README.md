@@ -1,1 +1,1 @@
-# Praca-domowa-z-lekcji-1
+# Praca na lekcji, projekt, prace domowe oraz wlasne programy
