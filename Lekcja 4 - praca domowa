@@ -1,0 +1,366 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace ConsoleApplication5
+{
+    public class bohater
+    {
+        public int HP;
+        public string imie;
+        public int PT;
+        public int moc_ataku;
+    }
+                                
+        public class Lucznik : bohater
+        {
+            public int zasieg;
+            public int zrecznosc;
+        /*    public Lucznik(int a, string b, int c, int d, int e, int f)
+            {
+                HP = a;
+                imie = b;
+                PT = c;
+                moc_ataku = d;
+                zasieg = e;
+                zrecznosc = f;
+            }*/
+            public void pokazlucznika()
+            {
+                Console.WriteLine("    HP: {0} \n    imie: {1} \n    PT: {2} \n    moc_ataku: {3} \n    zasieg: {4}\n    zrecznosc: {5}\n", HP, imie, PT, moc_ataku, zasieg, zrecznosc);
+            }
+            
+        }
+        class Wojownik : bohater
+        {
+            public int sila;
+        
+        /*    public Wojownik(int a1, string b1, int c1, int d1, int e1)
+            {
+                HP = a1;
+                imie = b1;
+                PT = c1;
+                moc_ataku = d1;
+                sila = e1;
+            }*/
+            public void pokazwojownika()
+            {
+                Console.WriteLine("    HP: {0} \n    imie: {1} \n    PT: {2} \n    moc_ataku: {3} \n    sila: {4}\n", HP, imie, PT, moc_ataku, sila);
+            }
+        }
+
+
+    class Program
+    {
+      
+        static void Main(string[] args)
+        {
+
+        
+           Console.ForegroundColor = ConsoleColor.Red;
+           Console.WriteLine("Dzialanie konstruktora do Wojownika: ");
+           Wojownik Wojownik0 = new Wojownik();
+           Wojownik0.imie = "OrkA";
+           Wojownik0.HP = 100;
+           Wojownik0.sila = 15;
+           Wojownik0.PT = 1;
+           Wojownik0.moc_ataku = 50;
+           Wojownik0.pokazwojownika();
+
+           Console.ResetColor();
+           Console.WriteLine(" ");
+
+           Console.ForegroundColor = ConsoleColor.Red;
+           Console.WriteLine("Dzialanie konstruktora do Lucznika: ");
+           Lucznik Lucznik0 = new Lucznik();
+           Lucznik0.imie = "GoblinA";
+           Lucznik0.HP = 100;
+           Lucznik0.PT = 3;
+           Lucznik0.moc_ataku = 40;
+           Lucznik0.zasieg = 680;
+           Lucznik0.zrecznosc = 15;
+           Lucznik0.pokazlucznika();
+           Console.ResetColor();
+             
+
+        poczatek:
+          
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Gra RPG: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Rozpocznij - walka 1 vs 1");
+            Console.WriteLine("[B] - Utworz nowego bohatera [Lucznik] - 1");
+            Console.WriteLine("[C] - Utworz nowego bohatera [Lucznik] - 2");
+            Console.WriteLine("[D] - Utworz nowego bohatera [Wojownik] - 3");
+            Console.WriteLine("[E] - Utworz nowego bohatera [Wojownik] - 4");
+            Console.WriteLine("[H] - Wyjscie z programu");
+
+                 Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                    goto GRA1;
+                case "b":
+                case "B":
+                                                                       
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                 
+                    Lucznik Lucznik1 = new Lucznik();   
+                           
+                    Console.WriteLine("Podaj nazwe Lucznika1: ");
+                    Lucznik1.imie = Console.ReadLine();
+            podaj_hp:
+                    Console.WriteLine("Podaj HP (w %) Lucznika1: ");
+                    Lucznik1.HP = int.Parse(Console.ReadLine());
+                    if (Lucznik1.HP > 100 || Lucznik1.HP <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc parametru HP [0-100%], sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_hp;
+                    }    
+
+                    Console.WriteLine("Podaj PT Lucznika1: ");
+                    Lucznik1.PT = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj moc ataku Lucznika1: ");
+                    Lucznik1.moc_ataku = int.Parse(Console.ReadLine());
+            podaj_zasieg:   
+                    Console.WriteLine("Podaj zasieg Lucznika1: ");
+                    Lucznik1.zasieg = int.Parse(Console.ReadLine()); 
+                         if (Lucznik1.zasieg > 1000 || Lucznik1.zasieg <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc parametru zasieg [0-1000], sprobuj ponownie");
+
+
+                        Console.ResetColor();
+                        goto podaj_zasieg;
+                    }
+                           
+                    Console.WriteLine("Podaj zrecznosc Lucznika1: ");
+                    Lucznik1.zrecznosc = int.Parse(Console.ReadLine());
+   
+            
+                    Console.WriteLine("Pomyslnie stworzono nowego lucznika. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Lucznik1.imie);
+                    Console.WriteLine("     ilosc hp [w %]: {0} ", Lucznik1.HP);
+                    Console.WriteLine("     ilosc PT: {0} ", Lucznik1.PT);
+                    Console.WriteLine("     moc ataku: {0} ", Lucznik1.moc_ataku);
+                    Console.WriteLine("     zasieg: {0} ", Lucznik1.zasieg);
+                    Console.WriteLine("     zrecznosc: {0} ", Lucznik1.zrecznosc);
+            
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+            
+                case "c":
+                case "C":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Lucznik Lucznik2 = new Lucznik();
+                    Console.WriteLine("Podaj nazwe Lucznika2: ");
+                    Lucznik2.imie = Console.ReadLine();
+            podaj_hp2:
+                    Console.WriteLine("Podaj HP (w %) Lucznika2: ");
+                    Lucznik2.HP = int.Parse(Console.ReadLine());
+                    if (Lucznik2.HP > 100 || Lucznik2.HP <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc parametru HP [0-100%], sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_hp2;
+                    }
+                    Console.WriteLine("Podaj PT Lucznika2: ");
+                    Lucznik2.PT = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj moc ataku Lucznika2: ");
+                    Lucznik2.moc_ataku = int.Parse(Console.ReadLine());
+            podaj_zasieg2:
+                    Console.WriteLine("Podaj zasieg Lucznika2: ");
+                    Lucznik2.zasieg = int.Parse(Console.ReadLine());
+                    if (Lucznik2.zasieg > 1000 || Lucznik2.zasieg <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc parametru zasieg [0-1000], sprobuj ponownie");
+
+
+                        Console.ResetColor();
+                        goto podaj_zasieg2;
+                    }
+                   
+                    Console.WriteLine("Podaj zrecznosc Lucznika2: ");
+                    Lucznik2.zrecznosc = int.Parse(Console.ReadLine());
+                  
+                    Console.WriteLine("Pomyslnie stworzono drugiego lucznika. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Lucznik2.imie);
+                    Console.WriteLine("     ilosc hp [w %]: {0} ", Lucznik2.HP);
+                    Console.WriteLine("     ilosc PT: {0} ", Lucznik2.PT);
+                    Console.WriteLine("     moc ataku: {0} ", Lucznik2.moc_ataku);
+                    Console.WriteLine("     zasieg: {0} ", Lucznik2.zasieg);
+                    Console.WriteLine("     zrecznosc: {0} ", Lucznik2.zrecznosc);
+
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+                case "d":
+                case "D":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Wojownik Wojownik1 = new Wojownik();
+                    Console.WriteLine("Podaj nazwe Wojownika1: ");
+                    Wojownik1.imie = Console.ReadLine();
+                podaj_hp3:
+                    Console.WriteLine("Podaj HP (w %) Wojownika1: ");
+                    Wojownik1.HP = int.Parse(Console.ReadLine());
+                    if (Wojownik1.HP > 100 || Wojownik1.HP <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc parametru HP [0-100%], sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_hp3;
+                    }
+
+                    Console.WriteLine("Podaj PT Wojownik1: ");
+                    Wojownik1.PT = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj moc ataku Wojownika1: ");
+                    Wojownik1.moc_ataku = int.Parse(Console.ReadLine());
+               
+                    Console.WriteLine("Podaj sile Wojownika1: ");
+                    Wojownik1.sila = int.Parse(Console.ReadLine());
+
+
+                    Console.WriteLine("Pomyslnie stworzono nowego wojownika. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Wojownik1.imie);
+                    Console.WriteLine("     ilosc hp [w %]: {0} ", Wojownik1.HP);
+                    Console.WriteLine("     ilosc PT: {0} ", Wojownik1.PT);
+                    Console.WriteLine("     moc ataku: {0} ", Wojownik1.moc_ataku);
+                    Console.WriteLine("     sila: {0} ", Wojownik1.sila);
+
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+
+                case "e":
+                case "E":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Wojownik Wojownik2 = new Wojownik();
+                    Console.WriteLine("Podaj nazwe Wojownika2: ");
+                    Wojownik2.imie = Console.ReadLine();
+                podaj_hp4:
+                    Console.WriteLine("Podaj HP (w %) Wojownika2: ");
+                    Wojownik2.HP = int.Parse(Console.ReadLine());
+                    if (Wojownik2.HP > 100 || Wojownik2.HP <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc parametru HP [0-100%], sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_hp4;
+                    }
+
+                    Console.WriteLine("Podaj PT Wojownik2: ");
+                    Wojownik2.PT = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj moc ataku Wojownika2: ");
+                    Wojownik2.moc_ataku = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Podaj sile Wojownika2: ");
+                    Wojownik2.sila = int.Parse(Console.ReadLine());
+
+
+                    Console.WriteLine("Pomyslnie stworzono nowego wojownika. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Wojownik2.imie);
+                    Console.WriteLine("     ilosc hp [w %]: {0} ", Wojownik2.HP);
+                    Console.WriteLine("     ilosc PT: {0} ", Wojownik2.PT);
+                    Console.WriteLine("     moc ataku: {0} ", Wojownik2.moc_ataku);
+                    Console.WriteLine("     sila: {0} ", Wojownik2.sila);
+
+                    Console.ResetColor();
+                    goto poczatek;
+                    break;
+
+                case "h":
+                case "H":
+                    Application.Exit();
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+
+
+                } 
+            GRA1:
+                    Console.WriteLine(" ");
+                         Console.BackgroundColor = ConsoleColor.Cyan;
+                         Console.ForegroundColor = ConsoleColor.Black;
+                         Console.WriteLine("Wojownik VS Lucznik [wartosci podane w konstruktorze domyslnym]: ");  
+                         Console.WriteLine("[A] - Rozpocznij "); 
+                         Console.WriteLine("[B] - Powrot do MENU");
+                         Console.WriteLine("[C] - Wyjscie z aplikacji"); 
+                    
+                 Console.ResetColor();
+                 string litera2 = Console.ReadLine();
+                 switch (litera2) { 
+                     case "a":
+                     case "A":
+
+                         Console.WriteLine(" ");
+                         Console.ForegroundColor = ConsoleColor.Green;                      
+                         int obrazenia1, obrazenia2;
+                         obrazenia1 = Wojownik0.moc_ataku * Wojownik0.PT * Wojownik0.HP;
+                         obrazenia2 = Lucznik0.moc_ataku * Lucznik0.PT * Lucznik0.HP;
+                         Console.WriteLine("Obrazenia {0} wynosza {1} ", Wojownik0.imie, obrazenia1);
+                         Console.WriteLine("Obrazenia {0} wynosza {1} ", Lucznik0.imie, obrazenia2);
+                         if(obrazenia1 > obrazenia2)
+                         {
+                             Console.WriteLine("Wygrywa {0} ", Wojownik0.imie);
+                         }
+                         else
+                         {
+                             Console.WriteLine("Wygrywa {0} ", Lucznik0.imie);
+                         }
+                         Console.ResetColor();
+                         goto GRA1;
+                         break;
+
+                     case "b":
+                     case "B":             
+                         goto poczatek;
+                         break;
+                     case "c":
+                     case "C":
+              
+                         Application.Exit();
+                         break;
+
+                     default:
+                         Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                         goto GRA1;
+                         break;
+            }
+            Console.ReadKey();
+        }
+
+   
+}
+}
