@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication20
+{
+    class Program
+    {
+        public class Czworokat
+        {
+            public int pierwszyBok;
+            public int drugiBok;
+            public int trzeciBok;
+            public int czwartyBok;
+           /* public int czyRomb()
+            {
+                if (pierwszyBok == drugiBok || trzeciBok == czwartyBok)
+                {
+                    Console.WriteLine("To jest romb");
+                }
+                else
+                {
+                    Console.WriteLine("To nie jest romb");
+                }*/
+            }
+        
+
+
+
+        static void Main(string[] args)
+        {
+            Czworokat Czworokat1 = new Czworokat();
+            start:
+            Console.WriteLine("Podaj dlugosc 1 boku: ");
+            Czworokat1.pierwszyBok = int.Parse(Console.ReadLine());
+            if (Czworokat1.pierwszyBok < 0) { Console.WriteLine("podales liczbe ujemna!"); goto start; }
+            Console.WriteLine("Podaj dlugosc 2 boku: ");
+            Czworokat1.drugiBok = int.Parse(Console.ReadLine());
+            if (Czworokat1.drugiBok < 0) { Console.WriteLine("podales liczbe ujemna!"); goto start; }
+            Console.WriteLine("Podaj dlugosc 3 boku: ");
+            Czworokat1.trzeciBok = int.Parse(Console.ReadLine());
+            if (Czworokat1.trzeciBok < 0) { Console.WriteLine("podales liczbe ujemna!"); goto start; }
+            Console.WriteLine("Podaj dlugosc 4 boku: ");
+            Czworokat1.czwartyBok = int.Parse(Console.ReadLine());
+            if (Czworokat1.czwartyBok < 0) { Console.WriteLine("podales liczbe ujemna!"); goto start; }
+            if (Czworokat1.pierwszyBok == Czworokat1.drugiBok || Czworokat1.trzeciBok == Czworokat1.czwartyBok)
+            {
+                Console.WriteLine("To jest romb");
+            }
+            else
+            {
+                Console.WriteLine("To nie jest romb");
+            }
+
+            Console.ReadKey();
+        }
+       
+    } 
+}
