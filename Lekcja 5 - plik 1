@@ -1,0 +1,114 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+namespace ConsoleApplication21
+{
+    class Program
+    {
+        class osoba: IGitarzysta, ISkrzypek
+        {
+         
+            public void Graj()
+            {
+                Console.WriteLine("Gram ale nie wiem na czym");
+            }
+            void IGitarzysta.Graj()
+            {
+                Console.WriteLine("Gram na gitarze");
+            }
+            void ISkrzypek.Graj()
+            {
+                Console.WriteLine("Gram na skrzypcach");
+            }
+
+        }
+        class Vehicle
+        {
+            public string Marka;        
+        }
+        class Car : Vehicle, Rideable
+        {
+            public void Ride()
+             {
+            Console.WriteLine("Jade samochodem. ");
+             }
+        }
+        class Bicycle : Vehicle, Rideable
+        {
+            public void Ride()
+            {
+                Console.WriteLine("Jade rowerem. ");
+            }
+        }
+        interface Rideable
+        {
+            void Ride();                              
+        } 
+        interface IGitarzysta
+        {
+            void Graj();
+        }
+        interface ISkrzypek
+        {
+            void Graj();
+        }
+
+            
+        
+
+        static void Main(string[] args)
+        {
+            // 1. W nowym projekcie napisac pusta klase  vehicle oraz dwie dziedziczace po niej klasy Car i Bicycle.
+            // 2. Utworzyc interfejs Rideable zawierajacy deklaracje metody Ride() 
+            // 3. Podpiac interfejs do klas Car i Bicycle i zaimplementowac metode Ride wyswietlajac w konsoli komunikat odpowiednio Jade samochodem LUB Jade Rowerem
+            // 4. Utworzyc obiekt Car1 typu Car oraz Bicycle1 typu Bicycle, dla nowo utworzonych obiektow wywolac metode Ride i zobaczyc co sie wyswietli na ekranie
+          
+            Car Car1 = new Car();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Podaj marke samochodu 1: ");
+            Car1.Marka = Console.ReadLine();
+            Console.Write("Nazwa marki samochodu: ");
+            Console.WriteLine(" {0} ", Car1.Marka);
+            Car1.Ride();
+            Console.ResetColor();
+
+
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+
+
+            Bicycle Bicycle1 = new Bicycle();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Podaj marke roweru 1: ");
+            Bicycle1.Marka = Console.ReadLine();
+            Console.Write("Nazwa marki roweru: ");
+            Console.WriteLine(" {0} ", Bicycle1.Marka);
+            Bicycle1.Ride();
+            Console.ResetColor();
+
+
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+
+
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Wprowadzono samochod 1 i rower 1 \n");
+            Console.ResetColor();
+
+            Console.WriteLine("Zadanie z osoba i skrzypcem, gitarzysta \n");
+            osoba osoba1 = new osoba();                
+            IGitarzysta gitara = osoba1;
+            gitara.Graj();
+            ISkrzypek skrzypce = osoba1;
+            skrzypce.Graj(); 
+            osoba1.Graj();
+            Console.ReadKey();
+        }
+
+    }
+}
