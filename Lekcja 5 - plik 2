@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication22
+{
+    class Test2
+    {
+        public string slowo;
+    }
+    class Test: IClonable
+    {
+        public int liczba;
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+       public Test2 poleTestowe;
+        public Test()
+       {
+           poleTestowe = new Test2();
+       }
+        public Test GlebokaKopia()
+        {
+            Test tempTest = new Test();
+            tempTest.liczba = this.liczba;
+            tempTest.poleTestowe.slowo = this.poleTestowe.slowo;
+            return tempTest;
+        }
+    }
+    interface IClonable
+    {
+        Object Clone();
+    }
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Test obiekt1 = new Test();          
+            Console.WriteLine("Podaj liczbe 1: ");
+            obiekt1.liczba = int.Parse(Console.ReadLine());
+
+            Test obiekt2 = new Test();
+            Console.WriteLine("Podaj liczbe 2: ");
+            obiekt2.liczba = int.Parse(Console.ReadLine());
+
+            Test obiekt3 = new Test();
+            Console.WriteLine("Podaj liczbe 3: ");
+            obiekt3.liczba = int.Parse(Console.ReadLine());
+
+
+            Console.WriteLine("Wartosc obiektow przez przypisaniem na sztywno:  1: {0}, 2: {1}, 3: {2}", obiekt1.liczba, obiekt2.liczba, obiekt3.liczba);
+
+            obiekt1.liczba = 255;
+            obiekt1.poleTestowe.slowo = "slowo";
+            obiekt2 = obiekt1;
+
+
+            obiekt3 = obiekt1.GlebokaKopia(); //  LUB    obiekt3 = obiekt1.GlebokaKopia();
+
+            obiekt1.liczba = 347;
+            obiekt1.poleTestowe.slowo = "kaczka";
+
+            Console.WriteLine("Wartosc obiektow po przypisaniem na sztywno:  1: {0}, 2: {1}, 3: {2}", obiekt1.liczba, obiekt2.liczba, obiekt3.liczba);
+            Console.WriteLine("Wyswietlenie slowa w zaleznosci od wartosci obiekt1 [255 = slowo, 347 = kaczka]: ");
+            Console.WriteLine(obiekt1.poleTestowe.slowo);
+            Console.WriteLine(obiekt1.poleTestowe.slowo);
+            Console.WriteLine(obiekt1.poleTestowe.slowo);
+
+           
+
+          
+Console.ReadKey();
+        }  
+    }
+}
