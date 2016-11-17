@@ -1,0 +1,243 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication11
+{
+    interface IObliczenia
+    {
+        void Wyswietl();
+    }
+    class zmienne: IObliczenia
+    {
+        public double a, b, c, wynik, wynik2;
+        public void Wyswietl() { }
+    }
+    class LiczSilnie : zmienne
+    {
+        public double silnia = 1,i;
+        public void Wyswietl()
+        {
+            Silnia();
+        }
+        public void Silnia()
+        {          
+                if (a < 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Silnia nie moze byc liczona z liczby ujemnej, sprobuj ponownie: ");
+                    Console.ResetColor();
+                }
+                if (a == 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Silnia z 0 wynosi 1 ");
+                    Console.ResetColor();
+                }
+                if(a > 0)
+                {
+                    for (i = a; i > 0; i--)
+                    {
+                        silnia = silnia * i;
+                    }
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Silnia z liczby {0} wynosi {1} ", a, silnia);
+                        Console.ResetColor();
+                    }                           
+            }   
+        }
+    class LiczPotege : zmienne
+    {
+        public double i, potega = 1;
+        public void Wyswietl()
+        {
+            Potega();
+        }
+        public void Potega()
+        {
+            if (b == 0)
+            {
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Liczba {0} podniesiona do potegi 0 wynosi 1", a);
+                Console.ResetColor();
+            }
+                     if (a < 0 || b < 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Wprowadzono liczbe ujemna, sprobuj ponownie: ");
+                    Console.ResetColor();
+                }
+
+                     if (a > 0 && b > 0)
+                     {
+                         for (i = b; i > 0; i--)
+                         {
+                             potega = potega*a;
+                         }
+                         Console.ForegroundColor = ConsoleColor.DarkRed;
+                         Console.WriteLine("Liczba {0} do potegi {1} wynosi {2} ", a,b, potega);
+                         Console.ResetColor();
+                     }    
+        }
+    }
+    class LiczSumaCiagu: zmienne
+    {  
+        public double wynik = 0,a = 0;
+        public void Wyswietl()
+        {
+            SumaCiagu();
+        }
+        public void SumaCiagu()
+        {
+                         do
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGreen;     
+                        Console.WriteLine("Podaj liczby do sumowania. Zero zakonczy dzialanie");
+                        a = int.Parse(Console.ReadLine());
+                        wynik = wynik + a;
+                        Console.ResetColor();
+                        Console.WriteLine(" ");
+                        Console.BackgroundColor = ConsoleColor.DarkGreen;   
+                        Console.WriteLine("Wynik sumowania: ");
+                        Console.ResetColor();
+                        Console.WriteLine(" ");
+                        
+                        Console.WriteLine(wynik);
+
+                    }
+                    while (a != 0);
+             
+                               
+        }
+    }
+    class LiczSumaUlamkowaCiagu : zmienne
+    {
+        public double wynik = 0, a = 0;
+        public void Wyswietl()
+        {
+            SumaCiaguUlamkowego();
+        }
+        public void SumaCiaguUlamkowego()
+        {
+            do
+            {
+                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("Podaj liczby do sumowania. Zero zakonczy dzialanie. Suma ciagu ulamkowego");
+                a = int.Parse(Console.ReadLine());
+                wynik = wynik + ((a+1)/a);
+                Console.ResetColor();
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("Wynik sumowania: ");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+
+                Console.WriteLine(wynik);
+
+            }
+            while (a != 0);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+              poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Algorytmy i struktury danych - lekcja 1: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Silnia");
+            Console.WriteLine("[B] - Potega");
+            Console.WriteLine("[C] - Suma ciagu");
+            Console.WriteLine("[D] - Suma ulamkowa");
+            Console.WriteLine("[E] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;               
+                    LiczSilnie silnia = new LiczSilnie();
+                    Console.WriteLine("Podaj liczbe: ");
+                    Console.ResetColor();
+                    silnia.a = int.Parse(Console.ReadLine());
+                   
+                    silnia.Wyswietl();                
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                  Console.ResetColor();                
+                  goto poczatek;
+                  break;
+
+                case "b":
+                case "B":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;               
+                    LiczPotege potega = new LiczPotege();
+                    Console.WriteLine("Podaj liczbe ktora bedzie podnoszona do jakies potegi: ");
+                    potega.a = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podana wczesniej liczba ma zostac podniesiona do potegi? (wprowadz liczbe) : ");
+                    potega.b = int.Parse(Console.ReadLine());
+                    Console.ResetColor();
+                    potega.Wyswietl();                
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+              
+
+                  Console.ResetColor();                
+                  goto poczatek;
+                  break;
+
+                case "c":
+                case "C":
+                          
+                    LiczSumaCiagu sumaciagu = new LiczSumaCiagu();
+                    sumaciagu.Wyswietl();                                
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                       goto poczatek;
+                       break;
+
+
+                case "d":
+                case "D":
+
+                    LiczSumaUlamkowaCiagu sumaciaguulamkowego = new LiczSumaUlamkowaCiagu();
+                    sumaciaguulamkowego.Wyswietl();                                
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                       goto poczatek;
+                       break;
+
+                case "e":
+                case "E":
+                    Application.Exit();
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+            }  Console.ReadKey();
+          
+        }
+    }
+}
