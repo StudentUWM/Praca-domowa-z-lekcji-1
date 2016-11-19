@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication17
+{
+
+class pracownik
+{
+    public virtual void pracuj()
+    {
+        Console.WriteLine("pracownik pracuje");
+    }
+}
+class programista : pracownik
+{
+    public override void pracuj()
+    {
+        Console.WriteLine("pracownik pracuje");
+    }
+}
+class projektant : pracownik
+{
+    public override void pracuj()
+    {
+       Console.WriteLine("projektant pracuje");  
+    }
+}
+class ksiegowy : pracownik
+{
+    public override void pracuj()
+    {
+       Console.WriteLine("ksiegowy pracuje"); 
+    }
+}
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<pracownik> pracownik = new List<pracownik>();
+            pracownik.Add(new programista());
+            pracownik.Add(new ksiegowy());
+            pracownik.Add(new projektant());
+
+            foreach (var c in pracownik)
+                c.pracuj();
+            Console.ReadKey();
+        }
+    }
+}
