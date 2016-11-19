@@ -1,0 +1,240 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication27
+{
+    interface Ikonto
+    {
+        void saldopoprzelewie();
+        void saldoObecne();
+        void Wplatawkasie();
+        void saldopoprzelewie();
+    }
+    class Konto : Ikonto
+    {
+        public string nazwaKonta;
+        public int saldo, kwota, wplata;
+        public Konto()
+        {
+            nazwaKonta = "Moje Konto";
+            saldo = 10000;
+
+        }
+
+        public void pokazKonto()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Nazwa twojego konta: {0}, saldo: {1}", nazwaKonta, saldo);
+            Console.ResetColor();
+        }
+        public void saldopoprzelewie()
+        {
+            saldo = saldo - kwota;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo po przelewie wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+        public void saldoObecne()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo obecne wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+        public void platnosckarta()
+        {
+
+        }
+        public void Wyplatawkasie()
+        {
+
+        }
+        public void Wplatawkasie()
+        {
+            saldo = saldo + wplata;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo po wplacie w kasie wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+    }
+
+    class KontoPrywatne : Konto
+    {
+        public int ZUS2;
+           public KontoPrywatne()
+        {
+            nazwaKonta = "Moje Konto prywatne";
+            saldo = 25000;
+
+        }
+
+        public void pokazKontoprywatne()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Nazwa twojego konta prywatnego: {0}, saldo: {1}", nazwaKonta, saldo);
+            Console.ResetColor();
+        }
+        public void saldopoprzelewie()
+        {
+            saldo = saldo - kwota;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo po przelewie wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+        public void saldoObecne()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo obecne wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+        public void ZUS()
+        {
+            saldo = saldo - ZUS2;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo obecne po przelewie dla ZUS wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+        public void Wplatawkasie()
+        {
+            saldo = saldo + wplata;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saldo po wplacie w kasie wynosi: {0}", saldo);
+            Console.ResetColor();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Konto: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Tworzenie konta - podstawowe operacje na koncie");
+            Console.WriteLine("[B] - Domyslne tworzenie konta(konstruktor domyslny)");
+
+            Console.WriteLine("[C] - Wyjscie z programu");
+            Console.WriteLine("[D] - Operacje na koncie prywatnym - konstruktor domyslny");
+            Console.WriteLine("[E] - Operacje na koncie prywatnym - tworzenie nowego konta");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                    Console.WriteLine(" ");
+                    Konto konto = new Konto();
+                    Console.WriteLine("Podaj nazwe konta: ");
+                    konto.nazwaKonta = Console.ReadLine();
+                    Console.WriteLine("Podaj poczatkowe saldo: ");
+                    konto.saldo = int.Parse(Console.ReadLine());
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("       Informacje dla utworzonego konta: ");
+                    Console.WriteLine("Nazwa dla konta: {0}", konto.nazwaKonta);
+                    Console.WriteLine("Saldo dla konta: {0}", konto.saldo);
+                    Console.ResetColor();
+                    konto.saldoObecne();
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Dokonaj swojego pierwszego przelewu: ");
+
+                    Console.ResetColor();
+                    Console.WriteLine("Ile pieniedzy chcesz przelac?: ");
+                    konto.kwota = int.Parse(Console.ReadLine());
+                    konto.saldopoprzelewie();
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Dokonaj swojej pierwszej wplaty gotowki: ");
+                    Console.WriteLine("Jaka kwote chcialbys wplacic?: ");
+                    Console.ResetColor();
+                    konto.wplata = int.Parse(Console.ReadLine());
+                    konto.Wplatawkasie();
+
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("konstruktor dla Konta: ");
+                    Console.ResetColor();
+                    Konto konto1 = new Konto();
+                    konto1.pokazKonto();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+
+
+                case "c":
+                case "C":
+                    Application.Exit();
+                    break;
+                case "d":
+                case "D":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("konstruktor dla Konta prywatnego: ");
+                    Console.ResetColor();
+                    KontoPrywatne kontopriv = new KontoPrywatne();
+                    kontopriv.pokazKontoprywatne();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                
+                    goto poczatek;
+                    break;
+
+
+                case"E":
+                case"e":
+
+                    Console.WriteLine(" ");
+                    KontoPrywatne konto2 = new KontoPrywatne();
+                    Console.WriteLine("Podaj nazwe konta prywatnego: ");
+                    konto2.nazwaKonta = Console.ReadLine();
+                    Console.WriteLine("Podaj poczatkowe saldo: ");
+                    konto2.saldo = int.Parse(Console.ReadLine());
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("       Informacje dla utworzonego konta: ");
+                    Console.WriteLine("Nazwa dla konta: {0}", konto2.nazwaKonta);
+                    Console.WriteLine("Saldo dla konta: {0}", konto2.saldo);
+                    Console.ResetColor();
+                    konto2.saldoObecne();
+                               Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Dokonaj swojego pierwszego przelewu: ");
+
+                    Console.ResetColor();
+                    Console.WriteLine("Ile pieniedzy chcesz przelac?: ");
+                    konto2.kwota = int.Parse(Console.ReadLine());
+                    konto2.saldopoprzelewie();
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Wpisz kwote na przelew dla ZUSU: ");
+                    konto2.ZUS2 = int.Parse(Console.ReadLine());               
+                    Console.ResetColor();
+                    konto2.ZUS();
+                             Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Dokonaj swojej pierwszej wplaty gotowki: ");
+                    Console.WriteLine("Jaka kwote chcialbys wplacic?: ");
+                    Console.ResetColor();
+                    konto2.wplata = int.Parse(Console.ReadLine());
+                    konto2.Wplatawkasie();
+
+
+                    goto poczatek;
+                    break;
+
+
+
+            } Console.ReadKey();
+        }
+    }
+}
