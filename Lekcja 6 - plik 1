@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication23
+{
+    interface Iwork
+    {
+        void Pracuj();
+        void Wyswietl();
+    }
+    class pracownik : Iwork
+    {
+        public void Wyswietl()
+        {
+            Pracuj();
+        }
+        virtual public void Pracuj()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("logowanie");
+            Console.ResetColor();
+        }
+    }
+    class Programista : pracownik
+    {
+        public void Wyswietl() { }
+    /*    public override void zadanie()
+        {
+
+            Console.WriteLine(" ");
+            pracownik pracownik = new pracownik();
+            pracownik.Wyswietl();
+        }*/
+        public override void Pracuj()
+        {
+            base.Pracuj();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Obowiazki programisty");
+            Console.ResetColor();
+        }
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Figury , pola i obwod - LEKCJA 5: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - zadanie 1.Wyswietlnie pracownik pracuje z klasy potomniej. Praca na klasie Programista - logowanie");
+            Console.WriteLine("[B] - pracownik p = new programista, override, obowiazki");
+
+            Console.WriteLine("[G] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                 //   Programista programista1 = new Programista();
+                 //   programista1.zadanie();
+
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    pracownik p = new Programista();
+                    p.Pracuj();
+
+                    goto poczatek;
+                    break;
+
+
+                case "g":
+                case "G":
+                    Application.Exit();
+                    break;
+
+            } Console.ReadKey();
+        }
+    }
+}
+
