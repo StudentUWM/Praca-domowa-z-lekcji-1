@@ -1,0 +1,142 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace ConsoleApplication25
+{
+
+    abstract class Figura
+    {
+        protected int wynik;
+        protected int Boka;
+        protected int Bokb;
+        protected int Bokc;
+        public abstract void Pole();
+
+    }
+    class Kwadrat : Figura
+    {
+
+        public void Wyswietlpole()
+        {
+            Pole();
+        }
+        public override void Pole()
+        {
+          /*  Console.WriteLine(" ");
+            Kwadrat kwadrat = new Kwadrat();
+            Console.WriteLine("Podaj dlugosc boku a dla kwadratu: ");
+            kwadrat.Boka = int.Parse(Console.ReadLine());*/
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole kwadratu wynosi: ");
+            Console.ResetColor();
+            if (Boka < 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik = Boka * Boka;
+                Console.WriteLine("{0}", wynik);
+            }
+        }
+
+    }
+    class Trojkat : Figura
+    {
+        public void Wyswietlpole()
+        {
+            Pole();
+        }
+        public override void Pole()
+        {
+            Console.WriteLine(" ");
+       /*     Trojkat trojkat = new Trojkat();
+            Console.WriteLine("Podaj dlugosc boku a dla trojkata: ");
+            trojkat.Boka = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj dlugosc boku b dla trojkata: ");
+            trojkat.Bokb = int.Parse(Console.ReadLine());*/
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole trojkata wynosi: ");
+            Console.ResetColor();
+            if (Boka < 0 || Bokb < 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a lub Bok b nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik = (Boka * Bokb) / 2;
+                Console.WriteLine("{0}", wynik);
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Pola figur kwadratu i trojkata: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Kwadrat");
+            Console.WriteLine("[B] - Trojkat");
+
+            Console.WriteLine("[G] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                   
+                        Console.WriteLine(" ");
+            Kwadrat kwadrat = new Kwadrat();
+            Console.WriteLine("Podaj dlugosc boku a dla kwadratu: ");
+            kwadrat.Boka = int.Parse(Console.ReadLine());
+                    kwadrat.Wyswietlpole();
+                    goto poczatek;
+                    break;
+
+
+                case "b":
+                case "B":
+
+                   Console.WriteLine(" ");
+            Trojkat trojkat = new Trojkat();
+            Console.WriteLine("Podaj dlugosc boku a dla trojkata: ");
+            trojkat.Boka = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj dlugosc boku b dla trojkata: ");
+            trojkat.Bokb = int.Parse(Console.ReadLine());
+                    trojkat.Wyswietlpole();
+                    goto poczatek;
+                    break;
+
+
+                case "g":
+                case "G":
+                    Application.Exit();
+                    break;
+
+            } Console.ReadKey();
+        }
+    }
+}
