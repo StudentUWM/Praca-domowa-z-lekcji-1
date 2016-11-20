@@ -1,0 +1,449 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication18
+{
+    interface Iperson
+    {
+
+    }
+    interface Ifigura
+    {
+
+    }
+    abstract class Figura : Iperson, Ifigura
+    {
+        protected int wynik;
+        protected int wynik2;
+        public int Wynik { get { return this.wynik; } set { this.wynik = value; } }
+        public int Wynik2 { get { return this.wynik2; } set { this.wynik2 = value; } }
+        protected int Boka;
+        public int boka { get { return this.Boka; } set { this.Boka = value; } }
+        protected int Bokb;
+        public int bokb { get { return this.Bokb; } set { this.Bokb = value; } }
+        public abstract void Pole2();
+        public abstract void Pole();
+        virtual public void licz()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Metoda licz w klasie Figura");
+            Console.ResetColor();
+        }
+    }
+    class zmienne : Iperson, Ifigura
+    {
+        protected string Imie;
+        protected string Nazwisko;
+        public string imie { get { return this.Imie; } set { this.Imie = value; } }
+        public string nazwisko { get { return this.Nazwisko; } set { this.Nazwisko = value; } }
+        protected int RokStudiow;
+        protected int NumerGrupy;
+        protected int NumerAlbumu;
+        public int rokstudiow { get { return this.RokStudiow; } set { this.RokStudiow = value; } }
+        public int numergrupy { get { return this.NumerGrupy; } set { this.NumerGrupy = value; } }
+        public int numeralbumu { get { return this.NumerAlbumu; } set { this.NumerAlbumu = value; } }
+        virtual public void pracuj()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Metoda pracuj w klasie zmienne");
+            Console.ResetColor();
+        }
+        virtual public void WypiszInfo()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Metoda wypisujaca wszystkie pola: ");
+            Console.ResetColor();
+        }
+    }
+    class osoba : zmienne
+    {
+
+        public override void WypiszInfo()
+        {
+            base.WypiszInfo();
+            osoba osoba2 = new osoba();
+            osoba2.pracuj();
+            osoba2.pokazOsobe();
+            osoba osoba3 = new osoba("Michal", "Nienowakowski");
+            osoba3.pokazosobe();
+        }
+        public override void pracuj()
+        {
+            base.pracuj();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Metoda pracuj w klasie osoba");
+            Console.ResetColor();
+        }
+        public osoba()
+        {
+
+            Imie = "Tomasz";
+            Nazwisko = "Nowakowski";
+        }
+        public void pokazOsobe()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla osoby: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", Imie);
+            Console.WriteLine("Nazwisko: {0}", Nazwisko);
+            Console.ResetColor();
+        }
+        public osoba(string a, string b)
+        {
+            Imie = a;
+            Nazwisko = b;
+        }
+        public void pokazosobe()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor z parametrami dla osoby: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", Imie);
+            Console.WriteLine("Nazwisko: {0}", Nazwisko);
+            Console.ResetColor();
+        }
+    }
+    class student : zmienne
+    {
+        public override void WypiszInfo()
+        {
+            base.WypiszInfo();
+            student student2 = new student();
+            student2.pracuj();
+            student2.pokazStudenta();
+            student student3 = new student("Michal", "Nienowakowski", 3, 2, 235608);
+            student3.pokazstudenta();
+        }
+        public student()
+        {
+            Imie = "Tomasz";
+            Nazwisko = "Nowakowski";
+            RokStudiow = 2;
+            NumerGrupy = 5;
+            NumerAlbumu = 256844;
+        }
+        public void pokazStudenta()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla studenta: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", Imie);
+            Console.WriteLine("Nazwisko: {0}", Nazwisko);
+            Console.WriteLine("Rok studiow: {0}", RokStudiow);
+            Console.WriteLine("Numer grupy: {0}", NumerGrupy);
+            Console.WriteLine("Numer albumu: {0}", NumerAlbumu);
+            Console.ResetColor();
+        }
+        public override void pracuj()
+        {
+            base.pracuj();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Metoda pracuj w klasie student");
+            Console.ResetColor();
+        }
+        public student(string a, string b, int c, int d, int e)
+        {
+            Imie = a;
+            Nazwisko = b;
+            RokStudiow = c;
+            NumerGrupy = d;
+            NumerAlbumu = e;
+        }
+        public void pokazstudenta()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor z parametrami dla studenta: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", Imie);
+            Console.WriteLine("Nazwisko: {0}", Nazwisko);
+            Console.WriteLine("Rok studiow: {0}", RokStudiow);
+            Console.WriteLine("Numer grupy: {0}", NumerGrupy);
+            Console.WriteLine("Numer albumu: {0}", NumerAlbumu);
+            Console.ResetColor();
+        }
+    }
+
+    class Kwadrat : Figura
+    {
+        public override void licz()
+        {
+            base.licz();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Metoda licz w klasie kwadrat");
+            Console.ResetColor();
+
+        }
+        public void Wyswietlpole()
+        {
+            Pole();
+            licz();
+        }
+
+        public override void Pole()
+        {
+
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole kwadratu wynosi: ");
+            Console.ResetColor();
+            if (Boka < 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik = Boka * Boka;
+                Console.WriteLine("{0}", wynik);
+            }
+        }
+        public override void Pole2()
+        {
+
+            Console.WriteLine(" ");
+            Kwadrat kwadrat2 = new Kwadrat();
+            Console.WriteLine("Podaj dlugosc boku a dla kwadratu: ");
+            kwadrat2.boka = int.Parse(Console.ReadLine());
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole kwadratu wynosi: ");
+            Console.ResetColor();
+            if (Boka < 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik = Boka * Boka;
+                Console.WriteLine("{0}", wynik);
+            }
+        }
+
+
+    }
+    class Trojkat : Figura
+    {
+        public override void licz()
+        {
+            base.licz();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Metoda licz w klasie trojkat");
+            Console.ResetColor();
+
+        }
+        public void Wyswietlpole()
+        {
+            Pole();
+            licz();
+        }
+        public override void Pole()
+        {
+
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole trojkata wynosi: ");
+            Console.ResetColor();
+            if (Boka < 0 || Bokb < 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a lub Bok b nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik2 = (Boka * Bokb) / 2;
+                Console.WriteLine("{0}", wynik2);
+            }
+        }
+        public override void Pole2()
+        {
+            Trojkat trojkat2 = new Trojkat();
+            Console.WriteLine("Podaj dlugosc boku a dla trojkata: ");
+            trojkat2.boka = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj dlugosc boku b dla trojkata: ");
+            trojkat2.bokb = int.Parse(Console.ReadLine());
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole trojkata wynosi: ");
+            Console.ResetColor();
+            if (Boka < 0 || Bokb < 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a lub Bok b nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik2 = (Boka * Bokb) / 2;
+                Console.WriteLine("{0}", wynik2);
+            }
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("PRACA DOMOWA LEKCJA 6: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Konstruktor domyslny dla osoby");
+            Console.WriteLine("[B] - Konstruktor z parametrami dla osoby");
+            Console.WriteLine("[C] - Konstruktor domyslny dla studenta");
+            Console.WriteLine("[D] - Konstruktor z parametrami dla studenta");
+            Console.WriteLine("[E] - WypiszInfo dla osoby");
+            Console.WriteLine("[F] - WypiszInfo dla studenta");
+            Console.WriteLine("[G] - rzutowanie w gore i WypiszInfo - studenta w osobie");
+            Console.WriteLine("[H] - Oblicz pole dla kwadratu");
+            Console.WriteLine("[I] - Oblicz pole dla trojkata");
+            Console.WriteLine("[J] - Liczenie pol z listy");
+            Console.WriteLine("[K] - Wyjscie");
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+
+                    osoba osoba = new osoba();
+                    osoba.pokazOsobe();
+                    osoba.pracuj();
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    osoba osoba1 = new osoba("Michal", "Nienowakowski");
+                    osoba1.pokazosobe();
+                    osoba1.pracuj();
+                    goto poczatek;
+                    break;
+
+
+                case "c":
+                case "C":
+
+                    student student = new student();
+                    student.pokazStudenta();
+                    student.pracuj();
+                    goto poczatek;
+                    break;
+
+                case "d":
+                case "D":
+
+                    student student1 = new student("Michal", "Nienowakowski", 3, 2, 235608);
+                    student1.pokazstudenta();
+                    student1.pracuj();
+                    goto poczatek;
+                    break;
+
+                case "e":
+                case "E":
+
+                    osoba osoba5 = new osoba();
+                    osoba5.WypiszInfo();
+                    goto poczatek;
+                    break;
+
+                case "f":
+                case "F":
+
+                    student student4 = new student();
+                    student4.WypiszInfo();
+                    goto poczatek;
+                    break;
+
+
+                case "g":
+                case "G":
+
+
+                    goto poczatek;
+                    break;
+                case "h":
+                case "H":
+
+
+                    Console.WriteLine(" ");
+                    Kwadrat kwadrat = new Kwadrat();
+                    Console.WriteLine("Podaj dlugosc boku a dla kwadratu: ");
+                    kwadrat.boka = int.Parse(Console.ReadLine());
+                    kwadrat.Wyswietlpole();
+                    goto poczatek;
+                    break;
+
+                case "i":
+                case "I":
+
+                    Console.WriteLine(" ");
+                    Trojkat trojkat = new Trojkat();
+                    Console.WriteLine("Podaj dlugosc boku a dla trojkata: ");
+                    trojkat.boka = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj dlugosc boku b dla trojkata: ");
+                    trojkat.bokb = int.Parse(Console.ReadLine());
+                    trojkat.Wyswietlpole();
+                    goto poczatek;
+                    break;
+
+                case "j":
+                case "J":
+
+                    List<Figura> Figura = new List<Figura>();
+                    Figura.Add(new Kwadrat());
+                    Figura.Add(new Trojkat());
+                    foreach (var c in Figura)
+                        c.Pole2();
+                    goto poczatek;
+                    break;
+
+                case "k":
+                case "K":
+                    Application.Exit();
+                    break;
+
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+            } Console.ReadKey();
+        }
+    }
+}
