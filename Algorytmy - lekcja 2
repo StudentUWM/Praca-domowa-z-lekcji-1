@@ -1,0 +1,197 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication13
+{
+    interface Isort
+    {
+        void Wyswietl();
+        void Policz();
+        void WyswietlTabliceStartowa();
+        void WyswietlTablicePrzejsciowa();
+        void WyswietlTablicaKoncowa();
+    }
+    class zmienne : Isort
+    {
+        public void WyswietlTablicaKoncowa() { }
+        public void Wyswietl() { }
+        public void WyswietlTabliceStartowa() { }
+        public void WyswietlTablicePrzejsciowa() { }
+        public void Policz() { }
+        public int a, b, c, wynik, wynik2, k;
+    }
+    class CountingSort : zmienne
+    {
+        public int n;
+        public int[] PodajElementy;
+        public int[] TablicaKoncowa;
+        public int[] TablicaPrzejsciowa;
+        public void Wyswietl()
+        {
+            Policz();
+            WyswietlTabliceStartowa();
+            WyswietlTablicePrzejsciowa();
+            WyswietlTablicaKoncowa();
+        }
+        public void Policz()
+        {
+           
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Podaj dlugosc tablicy poczatkowej:");
+            Console.ResetColor();
+            k = int.Parse(Console.ReadLine());
+            PodajElementy = new int[k];
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podaj wartosci elementow tablicy (lacznie {0}): ", k);
+            Console.ResetColor();
+            for (int i = 0; i < k; i++)
+            {
+
+                b = int.Parse(Console.ReadLine());
+                PodajElementy[i] = b;
+            }
+             TablicaPrzejsciowa = new int[k];
+            for (int i = 0; i < k; i++)
+            {
+            TablicaPrzejsciowa[i] = 0;
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Pomyslnie wyzerowano tablice przejsciowa");
+            Console.ResetColor();
+            for (int j = 0; j < PodajElementy.Length; j++)
+            {
+                TablicaPrzejsciowa[PodajElementy[j]] = TablicaPrzejsciowa[PodajElementy[j]] + 1;
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Pomyslnie zliczono i wpisano liczby z tablicy poczatkowej do przejsciowej.");
+            Console.ResetColor();
+            for (int i = 1; i < k; i++)
+            {
+                TablicaPrzejsciowa[i] = TablicaPrzejsciowa[i] + TablicaPrzejsciowa[i - 1];
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Pomyslnie obliczono indeksy gdzie maja byc wpisane elementy w tablicy przejsciowej");
+            Console.ResetColor();
+            int h = 100;
+            TablicaKoncowa = new int[h];
+          /*  for (int j = PodajElementy.Length; j > 0; j--)
+            {
+                TablicaKoncowa[TablicaPrzejsciowa[PodajElementy[j]]] = PodajElementy[j];
+                TablicaPrzejsciowa[PodajElementy[j]] = TablicaPrzejsciowa[PodajElementy[j]] - 1;
+            }*/
+            for (int j = PodajElementy.Length - 1; j > 0; j--)   //wytestowac to https://pl.wikipedia.org/wiki/Sortowanie_przez_zliczanie
+            {
+                TablicaKoncowa[TablicaPrzejsciowa[PodajElementy[j]]--] = PodajElementy[j];
+                TablicaPrzejsciowa[PodajElementy[j]] = TablicaPrzejsciowa[PodajElementy[j]] - 1;
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Pomyslnie stworzono tablice koncowa");
+            Console.ResetColor();
+        }
+        public void WyswietlTabliceStartowa()
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Elementy tablicy poczatkowej: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            for (int i = 0; i < PodajElementy.Length; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(PodajElementy[i]);
+                Console.ResetColor();
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+        }
+        public void WyswietlTablicePrzejsciowa()
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Elementy tablicy przejsciowej: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            for (int i = 0; i < TablicaPrzejsciowa.Length; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(TablicaPrzejsciowa[i]);
+                Console.ResetColor();
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+        }
+        public void WyswietlTablicaKoncowa()
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Tablica koncowa: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            for (int i = 0; i < TablicaKoncowa.Length; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(TablicaKoncowa[i]);
+                Console.ResetColor();
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+        }
+
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+        poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Algorytmy i struktury danych - lekcja 2: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Wykonaj counting sort na n liczbach: ");
+            Console.WriteLine("[B] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                    CountingSort sort = new CountingSort();
+                    sort.Wyswietl();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    Application.Exit();
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+
+            } Console.ReadKey();
+        }
+    }
+}
