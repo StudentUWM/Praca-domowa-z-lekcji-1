@@ -1,0 +1,134 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication22
+{
+
+    interface Isort
+    {
+        void SelectionSort1(int[] arr);
+        void SelectionSortDalej(string[] args);
+    }
+    class zmienne
+    {
+        protected string nieposortowane = "";
+        protected string posortowane = "";
+        protected int najmniejszyIndex, index, minIndex, tymczas, k, b;
+        protected int[] myList;
+        public string Nieposortowane{ get { return this.nieposortowane; } set { this.nieposortowane = value; } }
+        public string Posortowane { get { return this.posortowane; } set { this.posortowane = value; } }
+        public int K { get { return this.k; } set { this.k = value; } }
+        public int B { get { return this.b; } set { this.b = value; } }
+    }
+    class SelectionSort : zmienne, Isort
+    {
+
+        public void SelectionSort1(int[] arr)
+        {
+
+            for (index = 0; index < arr.Length - 1; index++)
+            {
+                najmniejszyIndex = index;
+                for (minIndex = index; minIndex < arr.Length; minIndex++)
+                {
+                    if (arr[najmniejszyIndex] < arr[minIndex])
+                        najmniejszyIndex = minIndex;
+                    tymczas = arr[najmniejszyIndex];
+                    arr[najmniejszyIndex] = arr[index];
+                    arr[index] = tymczas;
+                }
+            }
+        }
+
+
+        public void SelectionSortDalej(string[] args)
+        {
+
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Podaj dlugosc tablicy poczatkowej:");
+            Console.ResetColor();
+            k = int.Parse(Console.ReadLine());
+            myList = new int[k];
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podaj wartosci elementow tablicy (lacznie {0}): ", k);
+            Console.ResetColor();
+            for (int i = 0; i < k; i++)
+            {
+
+                b = int.Parse(Console.ReadLine());
+                myList[i] = b;
+            }
+            foreach (var item in myList)
+            {
+                nieposortowane = nieposortowane + item.ToString() + " ";
+            }
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wprowadzone dane: {0}", nieposortowane);
+            Console.ResetColor();
+            SelectionSort1(myList);
+            foreach (var item in myList)
+            {
+                posortowane = posortowane + item.ToString() + " ";
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Posortowana tablica: {0}", posortowane);
+            Console.WriteLine("Rozmiar: {0}", myList.Length);
+            Console.ResetColor();
+
+
+        }
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+        poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Algorytmy i struktury danych - lekcja 3: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Wykonaj selection sort na n liczbach: ");
+            Console.WriteLine("[B] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                    SelectionSort sort = new SelectionSort();
+                    sort.SelectionSortDalej(args);
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    Application.Exit();
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+
+            } Console.ReadKey();
+        }
+
+    }
+}
