@@ -1,0 +1,404 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace ConsoleApplication7
+{
+    class Program
+    {
+        class Zwierze : Izwierze
+        {
+            public string imie;
+            public int waga;
+            public int rozmiar;
+            public void JakSiePoruszam() { }
+            public void CoJem() { }
+        }
+        class Pies : Zwierze
+        {
+            public void JakSiePoruszam()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Poruszam sie na czterech lapach [Pies]");
+                Console.ResetColor();
+            }
+            public void CoJem()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Przepadam za koscmi");
+                Console.ResetColor();
+            }
+        }
+        class Wilk : Zwierze
+        {
+            public void JakSiePoruszam()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Poruszam sie na czterech lapach [Wilk]");
+                Console.ResetColor();
+            }
+            public void CoJem()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Przepadam za koscmi [Wilk]");
+                Console.ResetColor();
+            }
+        }
+        class Rekin : Zwierze
+        {
+            public void JakSiePoruszam()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Poruszam sie w wodzie [Rekin]");
+                Console.ResetColor();
+            }
+            public void CoJem()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Przepadam za innymi rybami [Rekin]");
+                Console.ResetColor();
+            }
+        }
+        class Orzel : Zwierze
+        {
+            public void JakSiePoruszam()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Poruszam sie w powietrzu [Orzel]");
+                Console.ResetColor();
+            }
+            public void CoJem()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Przepadam za polowaniami na inne zwierzeta [Orzel]");
+                Console.ResetColor();
+            }
+        }
+        class Krokodyl : Zwierze
+        {
+            public void JakSiePoruszam()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Poruszam sie w wodzie [Krokodyl]");
+                Console.ResetColor();
+            }
+            public void CoJem()
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Przepadam za polowaniami na inne zwierzeta [Krokodyl]");
+                Console.ResetColor();
+            }
+        }
+
+        interface Izwierze
+        {
+            void JakSiePoruszam();
+            void CoJem();
+        }
+
+        static void Main(string[] args)
+        {
+        poczatek:
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Wejsciowka LEKCJA 7: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - wywolanie obiektow kazdej z klas");
+            Console.WriteLine("[B] - Utworz jakiegos zwierzaka");
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                    Console.WriteLine(" ");
+
+                    Pies Pies1 = new Pies();
+                    Pies1.JakSiePoruszam();
+                    Pies1.CoJem();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+
+                    Console.WriteLine(" ");
+
+                    Wilk Wilk1 = new Wilk();
+                    Wilk1.JakSiePoruszam();
+                    Wilk1.CoJem();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+
+                    Console.WriteLine(" ");
+
+                    Rekin Rekin1 = new Rekin();
+                    Rekin1.JakSiePoruszam();
+                    Rekin1.CoJem();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+
+                    Console.WriteLine(" ");
+
+                    Orzel Orzel1 = new Orzel();
+                    Orzel1.JakSiePoruszam();
+                    Orzel1.CoJem();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+
+                    Console.WriteLine(" ");
+
+                    Krokodyl Krokodyl1 = new Krokodyl();
+                    Krokodyl1.JakSiePoruszam();
+                    Krokodyl1.CoJem();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+                    goto poczatek;
+                    break;
+                case "b":
+                case "B":
+                    goto made;
+                    break;
+
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+            }
+        made:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Made ur own pet - LEKCJA 7: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Utworz Psa");
+            Console.WriteLine("[B] - Utworz Wilka");
+            Console.WriteLine("[C] - Utworz Rekina");
+            Console.WriteLine("[D] - Utworz Orla");
+            Console.WriteLine("[E] - Utworz Krokodyla");
+            Console.WriteLine("[F] - Powrot do MENU");
+            Console.WriteLine("[G] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Pies Pies2 = new Pies();
+                    Console.WriteLine("Podaj imie Psa: ");
+                    Pies2.imie = Console.ReadLine();
+                podaj_waga:
+                    Console.WriteLine("Podaj wage psa [0-200kg]: ");
+                    Pies2.waga = int.Parse(Console.ReadLine());
+                    if (Pies2.waga > 200 || Pies2.waga <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc wagi psa, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_waga;
+                    }
+                podaj_rozmiar:
+                    Console.WriteLine("Podaj rozmiar psa [0-1000cm]: ");
+                    Pies2.rozmiar = int.Parse(Console.ReadLine());
+                    if (Pies2.rozmiar > 1000 || Pies2.rozmiar <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc rozmiaru psa, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_rozmiar;
+                    }
+                    Console.WriteLine("Pomyslnie stworzono nowego psa. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Pies2.imie);
+                    Console.WriteLine("     waga: {0} kg", Pies2.waga);
+                    Console.WriteLine("     rozmiar: {0} cm", Pies2.rozmiar);
+                    Console.ResetColor();
+                    goto made;
+                    break;
+
+                case "b":
+                case "B":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Wilk Wilk2 = new Wilk();
+                    Console.WriteLine("Podaj imie Wilka: ");
+                    Wilk2.imie = Console.ReadLine();
+                podaj_waga2:
+                    Console.WriteLine("Podaj wage Wilka [0-200kg]: ");
+                    Wilk2.waga = int.Parse(Console.ReadLine());
+                    if (Wilk2.waga > 200 || Wilk2.waga <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc wagi wilka, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_waga2;
+                    }
+                podaj_rozmiar2:
+                    Console.WriteLine("Podaj rozmiar wilka [0-1000cm]: ");
+                    Wilk2.rozmiar = int.Parse(Console.ReadLine());
+                    if (Wilk2.rozmiar > 1000 || Wilk2.rozmiar <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc rozmiaru wilka, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_rozmiar2;
+                    }
+                    Console.WriteLine("Pomyslnie stworzono nowego wilka. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Wilk2.imie);
+                    Console.WriteLine("     waga: {0} kg", Wilk2.waga);
+                    Console.WriteLine("     rozmiar: {0} cm", Wilk2.rozmiar);
+                    Console.ResetColor();
+                    goto made;
+                    break;
+                case "c":
+                case "C":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Rekin Rekin2 = new Rekin();
+                    Console.WriteLine("Podaj imie Rekina: ");
+                    Rekin2.imie = Console.ReadLine();
+                podaj_waga3:
+                    Console.WriteLine("Podaj wage Rekina [0-200kg]: ");
+                    Rekin2.waga = int.Parse(Console.ReadLine());
+                    if (Rekin2.waga > 200 || Rekin2.waga <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc wagi rekina, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_waga3;
+                    }
+                podaj_rozmiar3:
+                    Console.WriteLine("Podaj rozmiar rekina [0-1000cm]: ");
+                    Rekin2.rozmiar = int.Parse(Console.ReadLine());
+                    if (Rekin2.rozmiar > 1000 || Rekin2.rozmiar <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc rozmiaru rekina, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_rozmiar3;
+                    }
+                    Console.WriteLine("Pomyslnie stworzono nowego rekina. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Rekin2.imie);
+                    Console.WriteLine("     waga: {0} kg", Rekin2.waga);
+                    Console.WriteLine("     rozmiar: {0} cm", Rekin2.rozmiar);
+                    Console.ResetColor();
+                    goto made;
+                    break;
+                case "d":
+                case "D":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Orzel Orzel2 = new Orzel();
+                    Console.WriteLine("Podaj imie Orla: ");
+                    Orzel2.imie = Console.ReadLine();
+                podaj_waga4:
+                    Console.WriteLine("Podaj wage Orla [0-200kg]: ");
+                    Orzel2.waga = int.Parse(Console.ReadLine());
+                    if (Orzel2.waga > 200 || Orzel2.waga <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc wagi Orla, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_waga4;
+                    }
+                podaj_rozmiar4:
+                    Console.WriteLine("Podaj rozmiar Orla [0-1000cm]: ");
+                    Orzel2.rozmiar = int.Parse(Console.ReadLine());
+                    if (Orzel2.rozmiar > 1000 || Orzel2.rozmiar <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc rozmiaru Orla, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_rozmiar4;
+                    }
+                    Console.WriteLine("Pomyslnie stworzono nowego orla. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Orzel2.imie);
+                    Console.WriteLine("     waga: {0} kg", Orzel2.waga);
+                    Console.WriteLine("     rozmiar: {0} cm", Orzel2.rozmiar);
+                    Console.ResetColor();
+                    goto made;
+                    break;
+                case "e":
+                case "E":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(" ");
+                    Krokodyl Krokodyl2 = new Krokodyl();
+                    Console.WriteLine("Podaj imie Krokodyla: ");
+                    Krokodyl2.imie = Console.ReadLine();
+                podaj_waga5:
+                    Console.WriteLine("Podaj wage Krokodyla [0-200kg]: ");
+                    Krokodyl2.waga = int.Parse(Console.ReadLine());
+                    if (Krokodyl2.waga > 200 || Krokodyl2.waga <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc wagi Korkodyla, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_waga5;
+                    }
+                podaj_rozmiar5:
+                    Console.WriteLine("Podaj rozmiar Krokodyla [0-1000cm]: ");
+                    Krokodyl2.rozmiar = int.Parse(Console.ReadLine());
+                    if (Krokodyl2.rozmiar > 1000 || Krokodyl2.rozmiar <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Podano nieprawidlowa wartosc rozmiaru Krokodyla, sprobuj ponownie");
+                        Console.ResetColor();
+                        goto podaj_rozmiar5;
+                    }
+                    Console.WriteLine("Pomyslnie stworzono nowego krokodyla. Jego parametry to: ");
+                    Console.WriteLine("     imie - {0}  ", Krokodyl2.imie);
+                    Console.WriteLine("     waga: {0} kg", Krokodyl2.waga);
+                    Console.WriteLine("     rozmiar: {0} cm", Krokodyl2.rozmiar);
+                    Console.ResetColor();
+                    goto made;
+                    break;
+                case "f":
+                case "F":
+                    goto poczatek;
+                    break;
+                case "g":
+                case "G":
+                    Application.Exit();
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto made;
+                    break;
+
+            } Console.ReadKey();
+        }
+    }
+}
