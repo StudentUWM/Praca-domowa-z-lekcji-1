@@ -1,0 +1,182 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Runtime.Serialization;
+
+
+namespace ConsoleApplication31
+{
+    interface Iliczba
+    {
+
+    }
+
+    class zmienne : Iliczba
+    {
+        protected int liczba1, liczba2, liczba3;
+        public int Liczba1 { get { return this.liczba1; } set { this.liczba1 = value; } }
+        public int Liczba2 { get { return this.liczba2; } set { this.liczba2 = value; } }
+        public int Liczba3 { get { return this.liczba3; } set { this.liczba3 = value; } }
+    }
+    class statyczna
+    {
+        public static int metoda23()
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+     public class NaszWyjatekException: System.Exception
+     {
+      
+         public NaszWyjatekException(string Message) : base(Message) 
+         {
+             Console.WriteLine("Wlasny wyjatek wiadomosc"); 
+         }
+         public NaszWyjatekException(string message,Exception innerException):base(message,innerException)
+         { }
+         public NaszWyjatekException(SerializationInfo info, StreamingContext context) : base(info, context)
+         { }
+    }
+    class dzieleniezero: zmienne
+    {
+        public void liczenie()
+        {
+            try
+            {
+                liczba1 = liczba2 / liczba3;
+                Console.WriteLine("Wynik : {0}", liczba1);
+            }
+            catch (Exception e)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Nie lubie dzielic przez zero");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("e.Message:");
+                Console.ResetColor();
+                Console.WriteLine(e.Message);
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("e.Source:");
+                Console.ResetColor();
+                Console.WriteLine(e.Source);
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("e.Data:");
+                Console.ResetColor();
+                Console.WriteLine(e.Data);
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("e.TargetSite");
+                Console.ResetColor();
+                Console.WriteLine(e.TargetSite);
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("e.StackTrace");
+                Console.ResetColor();
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(" ");
+
+            }
+            finally
+            {
+                Console.WriteLine("FINALLY");
+            }
+        }
+    }
+       
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+        poczatek:
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("PRACA NA LEKCJA 7: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Dzielenie przez zero");
+            Console.WriteLine("[B] - Wyjatek NotImplementedException");
+            Console.WriteLine("[C] - Wlasny wyjatek");
+            Console.WriteLine("[K] - Wyjscie");
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                      Console.WriteLine(" ");
+                    dzieleniezero dzielenie = new dzieleniezero();
+                    Console.WriteLine("Podaj pierwsza liczbe do dzielenia (licznik): ");
+                    dzielenie.Liczba2 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj druga liczbe do dzielenia (mianownik): ");
+                    dzielenie.Liczba3 = int.Parse(Console.ReadLine());
+                    dzielenie.liczenie();
+                    goto poczatek;
+                    break;
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+                    try
+                    {             
+                    statyczna.metoda23();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(e.Message);
+                        Console.ResetColor();
+                    }
+                    goto poczatek;
+                    break;
+
+                case "c":
+                case "C":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Wlasny wyjatek: ");
+                    Console.ResetColor();
+                    NaszWyjatekException wyjatek = new NaszWyjatekException("Wlasny wyjatek przyklad");
+                    goto poczatek;
+                    break;
+
+                case "k":
+                case "K":
+
+                    Application.Exit();
+                    break;
+
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+            } Console.ReadKey();
+
+
+        }
+    }
+}
+
+
