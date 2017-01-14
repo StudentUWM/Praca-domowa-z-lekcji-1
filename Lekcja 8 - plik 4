@@ -1,0 +1,242 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication7
+{
+    class zmienne
+    {
+        public string imie;
+        public string nazwisko;
+        public int zarobki;
+        public void graj() { }
+        public void Wyswietl() { }
+
+    }
+    class Gracz : zmienne
+    {
+        public Gracz()
+        {
+            imie = "Tomasz";
+            nazwisko = "Nowakowski";
+            zarobki = 5200;
+        }
+        public void pokazGracza()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla gracza: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", imie);
+            Console.WriteLine("Nazwisko: {0}", nazwisko);
+            Console.WriteLine("zarobki {0}", zarobki);
+            Console.ResetColor();
+        }
+        public void Wyswietl()
+        {
+            pokazGracza();
+            graj();
+        }
+        public void graj()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Gracz [1] gra w Dota2");
+            Console.ResetColor();
+        }
+    }
+    class Skrzypek : Gracz
+    {
+        public Skrzypek()
+        {
+            imie = "Michal";
+            nazwisko = "Skrzypkowski";
+            zarobki = 1200;
+        }
+        public void pokazSkrzypka()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla skrzypka: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", imie);
+            Console.WriteLine("Nazwisko: {0}", nazwisko);
+            Console.WriteLine("zarobki {0}", zarobki);
+            Console.ResetColor();
+        }
+        public void Wyswietl()
+        {
+            pokazSkrzypka();
+            graj();
+        }
+        public void graj()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Skrzypek gra na skrzypcach");
+            Console.ResetColor();
+        }
+    }
+    class Hokeista : Gracz
+    {
+        public Hokeista()
+        {
+            imie = "Przemek";
+            nazwisko = "Hokeistyczny";
+            zarobki = 7200;
+        }
+        public void pokazHokeiste()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla hokeisty: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", imie);
+            Console.WriteLine("Nazwisko: {0}", nazwisko);
+            Console.WriteLine("zarobki {0}", zarobki);
+            Console.ResetColor();
+        }
+        public void Wyswietl()
+        {
+            pokazHokeiste();
+            graj();
+        }
+        public void graj()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Hokeista gra na hokeja");
+            Console.ResetColor();
+        }
+    }
+    class Esportowiec : Gracz
+    {
+        public Esportowiec()
+        {
+            imie = "Kuba";
+            nazwisko = "Kowalski";
+            zarobki = 10200;
+        }
+        public void pokazEsportowca()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla E-sportowca: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Imie: {0}", imie);
+            Console.WriteLine("Nazwisko: {0}", nazwisko);
+            Console.WriteLine("zarobki {0}", zarobki);
+            Console.ResetColor();
+        }
+        public void Wyswietl()
+        {
+            pokazEsportowca();
+            graj();
+        }
+        public void graj()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("E-sportowiec gra na gre");
+            Console.ResetColor();
+        }
+    }
+
+
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+        poczatek:
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Gracz: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - wywolanie obiektow dla gracza");
+
+            Console.WriteLine("[B] - wyjscie");
+            Console.WriteLine("[C] - wywolanie obiektow dla skrzypka");
+            Console.WriteLine("[D] - wywolanie obiektow dla hokeisty");
+            Console.WriteLine("[E] - wywolanie obiektow dla E-sportowca");
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+                    Console.WriteLine(" ");
+
+                    Gracz gracz1 = new Gracz();
+                    gracz1.Wyswietl();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    Application.Exit();
+                    break;
+
+                case "c":
+                case "C":
+
+
+                    Console.WriteLine(" ");
+                    Skrzypek skrzyp1 = new Skrzypek();
+                    skrzyp1.Wyswietl();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+                    goto poczatek;
+                    break;
+
+
+                case "d":
+                case "D":
+
+                    Console.WriteLine(" ");
+                    Hokeista hok1 = new Hokeista();
+                    hok1.Wyswietl();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+                    
+                    goto poczatek;
+                    break;
+
+                case "e":
+                case "E":
+
+                    Console.WriteLine(" ");
+                    Esportowiec sport1 = new Esportowiec();
+                    sport1.Wyswietl();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+
+                    goto poczatek;
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+            }
+        }
+    }
+}
