@@ -1,0 +1,516 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication8
+{
+    interface IClonable
+    {
+        Object Clone();
+    }
+    interface IFigura
+    {
+        void LiczPole();
+        void LiczObwod();
+        void PobierzDaneZKlawiatury();
+        void Wyswietl();
+    }
+    class Figura : IFigura, IClonable
+    {
+
+        public string nazwaFigury;
+        public void LiczPole() { }
+        public void LiczObwod() { }
+        public void PobierzDaneZKlawiatury() { }
+        public void Wyswietl() { }
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+
+    }
+    class Punkt : Figura
+    {
+        public int wspX, wspY, wynik;
+        public void PobierzDaneZKlawiatury() { }
+        public void LiczPole()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Nie mozna policzyc pola punktu");
+            Console.ResetColor();
+        }
+        public Punkt()
+        {
+
+            nazwaFigury = "nazwa punktu";
+            wspX = 20;
+            wspY = 5;
+
+        }
+        public void pokazPunkt()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Nazwa Figury: {0}, wspX: {1}, wspY: {2}", nazwaFigury, wspX, wspY);
+            Console.ResetColor();
+
+        }
+        public void LiczObwod()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Obwod punktu wynosi 0");
+            Console.ResetColor();
+        }
+        public void dlugoscMetodaPunkt()
+        {
+
+
+            if (wspX > wspY)
+            {
+                wynik = wspX - wspY;
+                Console.WriteLine("Dlugosc punktu wynosi: {0} ", wynik);
+            }
+            else
+            {
+                wynik = wspY - wspX;
+                Console.WriteLine("Dlugosc punktu wynosi: {0} ", wynik);
+            }
+        }
+
+        public void Wyswietl()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("IClonable:");
+            Clone();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            dlugoscMetodaPunkt();
+            LiczObwod();
+            LiczPole();
+
+        }
+
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+
+    class Prostokat : Figura
+    {
+        public int a, b, c, d, R;
+        public double wynik, obwod, wynik2;
+        public void PobierzDaneZKlawiatury() { }
+        public Prostokat()
+        {
+
+            nazwaFigury = "Prostokat";
+            a = 12;
+            b = 8;
+
+
+        }
+        public void pokazProstokat()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Nazwa Figury: {0}, Bok a : {0}, Bok b: {1}", nazwaFigury, a, b);
+            Console.ResetColor();
+
+        }
+        public void LiczPole()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole prostokata wynosi: ");
+            Console.ResetColor();
+            if (a <= 0 || b <= 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Boki prostokata nie moga byc liczbami ujemnymi, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                R = a * b;
+                wynik = R;
+                Console.WriteLine("{0}", wynik);
+            }
+
+        }
+        public void LiczObwod()
+        {
+
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Obwod prostokata wynosi: ");
+            Console.ResetColor();
+            if (a <= 0 || b <= 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Boki nie moga byc liczbami ujemnymi, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                R = a + a + b + b;
+                wynik2 = R;
+                Console.WriteLine("{0}", wynik2);
+            }
+
+        }
+
+        public void Wyswietl()
+        {
+            LiczObwod();
+            LiczPole();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("IClonable:");
+            Clone();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+
+        }
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+    class Trojkat : Figura
+    {
+        public int a, wynik, wynik2, b, c;
+        public void PobierzDaneZKlawiatury() { }
+        public Trojkat()
+        {
+
+            nazwaFigury = "Trojkat";
+            a = 15;
+            b = 12;
+            c = 5;
+
+        }
+        public void pokazTrojkat()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Nazwa Figury: {0}, Dlugosc jednego boku wynosi: {1}, Dlugosc drugiego boku wynosi: {2}, Wysokosc trojkata: {3}", nazwaFigury, a, b, c);
+            Console.ResetColor();
+
+        }
+
+        public void LiczPole()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole trojkata wynosi: ");
+            Console.ResetColor();
+            if (a <= 0 || b <= 0 || c <= 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Boki ani wysokosc nie moga byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik = (a * c) / 2;
+                Console.WriteLine("{0}", wynik);
+            }
+        }
+        public void LiczObwod()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Obwod trojkata wynosi: ");
+            Console.ResetColor();
+            if (a <= 0 || b <= 0 || c <= 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Boki ani wysokosc nie moga byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik2 = a + b + c;
+                Console.WriteLine("{0}", wynik2);
+            }
+        }
+
+        public void Wyswietl()
+        {
+            LiczObwod();
+            LiczPole();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("IClonable:");
+            Clone();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+        }
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+    class Kwadrat : Figura
+    {
+        public int a, wynik, wynik2;
+        public void PobierzDaneZKlawiatury() { }
+        public Kwadrat()
+        {
+
+            nazwaFigury = "Kwadrat";
+            a = 15;
+
+        }
+        public void pokazKwadrat()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Nazwa Figury: {0}, Dlugosc jednego boku wynosi: {1}", nazwaFigury, a);
+            Console.ResetColor();
+
+        }
+
+        public void LiczPole()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Pole kwadratu wynosi: ");
+            Console.ResetColor();
+            if (a <= 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik = a * a;
+                Console.WriteLine("{0}", wynik);
+            }
+        }
+        public void LiczObwod()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("Obwod kwadratu wynosi: ");
+            Console.ResetColor();
+            if (a <= 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bok a nie moze byc liczba ujemna, sprobuj ponownie: ");
+                Console.ResetColor();
+            }
+            else
+            {
+                wynik2 = 4 * a;
+                Console.WriteLine("{0}", wynik2);
+            }
+        }
+
+        public void Wyswietl()
+        {
+            LiczObwod();
+            LiczPole();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("IClonable:");
+            Clone();
+            Console.ResetColor();
+            Console.WriteLine(" ");
+        }
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+
+
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+        poczatek:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Figury , pola i obwod: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Punkt [Konstruktor domyslny]");
+            Console.WriteLine("[B] - Punkt [Dane wprowadzane przez uzytkownika]");
+            Console.WriteLine("[C] - Prostokat [Konstruktor domyslny]");
+            Console.WriteLine("[D] - Prostokat [Dane wprowadzane przez uzytkownika]");
+            Console.WriteLine("[E] - Trojkat [Konstruktor domyslny]");
+            Console.WriteLine("[F] - Trojkat [Dane wprowadzane przez uzytkownika]");
+            Console.WriteLine("[G] - Wyjscie z programu");
+            Console.WriteLine("[H] - Kwadrat [Konstruktor domyslny]");
+            Console.WriteLine("[I] - Kwadrat [Dane wprowadzane przez uzytkownika]");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("konstruktor dla Punktu: ");
+                    Console.ResetColor();
+                    Punkt Punkt = new Punkt();
+                    Punkt.Wyswietl();
+                    Punkt.pokazPunkt();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+
+
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    Console.WriteLine(" ");
+                    Punkt Punkt1 = new Punkt();
+                    Console.WriteLine("Podaj nazwe punktu: ");
+                    Punkt1.nazwaFigury = Console.ReadLine();
+                    Console.WriteLine("Podaj wspolrzedna X dla punktu: ");
+                    Punkt1.wspX = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj wspolrzedna Y dla punktu: ");
+                    Punkt1.wspY = int.Parse(Console.ReadLine());
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("       Informacje dla punktu dla podanych przez Ciebie danych: ");
+                    Console.WriteLine("Nazwa dla punktu: {0}", Punkt1.nazwaFigury);
+                    Console.ResetColor();
+                    Punkt1.Wyswietl();
+
+                    goto poczatek;
+                    break;
+                case "c":
+                case "C":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("konstruktor dla prostokata: ");
+                    Console.ResetColor();
+                    Prostokat pros = new Prostokat();
+                    pros.Wyswietl();
+                    pros.pokazProstokat();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "d":
+                case "D":
+
+                    Console.WriteLine(" ");
+                    Prostokat pros1 = new Prostokat();
+                    Console.WriteLine("Podaj nazwe prostokata: ");
+                    pros1.nazwaFigury = Console.ReadLine();
+                    Console.WriteLine("Podaj dlugosc boku a: ");
+                    pros1.a = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj dlugosc boku b: ");
+                    pros1.b = int.Parse(Console.ReadLine());
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("       Informacje dla prostokata dla podanych przez Ciebie danych: ");
+                    Console.WriteLine("Nazwa dla prostokata: {0}", pros1.nazwaFigury);
+                    Console.WriteLine("Dlugosci bokow prostokata: Bok a: {0}, Bok b: {1}", pros1.a, pros1.b);
+                    Console.ResetColor();
+                    pros1.Wyswietl();
+
+                    goto poczatek;
+                    break;
+
+                case "e":
+                case "E":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("konstruktor dla trojkata: ");
+                    Console.ResetColor();
+                    Trojkat trj = new Trojkat();
+                    trj.Wyswietl();
+                    trj.pokazTrojkat();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "f":
+                case "F":
+
+                    Console.WriteLine(" ");
+                    Trojkat trj1 = new Trojkat();
+                    Console.WriteLine("Podaj nazwe trojkata: ");
+                    trj1.nazwaFigury = Console.ReadLine();
+                    Console.WriteLine("Podaj dlugosc boku a: ");
+                    trj1.a = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj dlugosc boku b: ");
+                    trj1.b = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj wysokosc trojkata: ");
+                    trj1.c = int.Parse(Console.ReadLine());
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("       Informacje dla trojkata dla podanych przez Ciebie danych: ");
+                    Console.WriteLine("Nazwa dla trojkata: {0}", trj1.nazwaFigury);
+                    Console.ResetColor();
+                    trj1.Wyswietl();
+
+                    goto poczatek;
+                    break;
+
+
+                case "g":
+                case "G":
+                    Application.Exit();
+                    break;
+                case "h":
+                case "H":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("konstruktor dla kwadratu: ");
+                    Console.ResetColor();
+                    Kwadrat kwadrat = new Kwadrat();
+                    kwadrat.Wyswietl();
+                    kwadrat.pokazKwadrat();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "i":
+                case "I":
+
+                    Console.WriteLine(" ");
+                    Kwadrat kwadrat1 = new Kwadrat();
+                    Console.WriteLine("Podaj nazwe kwadratu: ");
+                    kwadrat1.nazwaFigury = Console.ReadLine();
+                    Console.WriteLine("Podaj dlugosc boku a: ");
+                    kwadrat1.a = int.Parse(Console.ReadLine());
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("       Informacje dla kwadratu dla podanych przez Ciebie danych: ");
+                    Console.WriteLine("Nazwa dla kwadratu: {0}", kwadrat1.nazwaFigury);
+                    Console.ResetColor();
+                    kwadrat1.Wyswietl();
+
+                    goto poczatek;
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+            } Console.ReadKey();
+        }
+    }
+}
