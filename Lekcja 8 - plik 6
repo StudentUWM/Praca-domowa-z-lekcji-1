@@ -1,0 +1,236 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ConsoleApplication9
+{
+    class zmienne
+    {
+        public float pojemnoscSilnika;
+        public string nrVIN;
+        public int rocznik;
+        public string nazwa;
+        public float srednieSpalanie;
+        public double dlugosctrasy;
+
+    }
+    class Samochod: zmienne
+    {
+        double wynik,wynik2,wynik3;
+        public void Wyswietl()
+        {
+            Create();
+        }
+        public Samochod()
+        {
+            pojemnoscSilnika = 100;
+            nrVIN = "10201014";
+            rocznik = 1995;
+            nazwa = "Audi";
+            srednieSpalanie = 5;
+            dlugosctrasy = 150;
+        }
+        public void Create()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla samochodu nr 1: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Pojemnosc silnika: {0}", pojemnoscSilnika);
+            Console.WriteLine("nrVIN: {0}", nrVIN);
+            Console.WriteLine("Rocznik: {0}", rocznik);
+            Console.WriteLine("Nazwa: {0}", nazwa);
+            Console.WriteLine("Srednie spalanie (na 100km) : {0}", srednieSpalanie);
+            Console.ResetColor();
+        }
+        public void ObliczSpalanie()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wyliczenie sredniego spalania dla samochodu nr 1 (typ trasy 0.8): ");  
+            wynik = srednieSpalanie * dlugosctrasy * 0.8;
+            Console.ResetColor();
+            Console.WriteLine("Wynik dla spalania: {0} ", wynik);
+
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wyliczenie sredniego spalania dla samochodu nr 1 (typ trasy 1): ");
+            wynik2 = srednieSpalanie * dlugosctrasy * 1;
+            Console.ResetColor();
+            Console.WriteLine("Wynik dla spalania: {0} ", wynik2);
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wyliczenie sredniego spalania dla samochodu nr 1 (typ trasy 1.3): ");
+            Console.ResetColor();
+            wynik3 = srednieSpalanie * dlugosctrasy * 1.3;
+
+            Console.WriteLine("Wynik dla spalania: {0} ", wynik3);
+            Console.ResetColor();
+        }
+
+    }
+    class Samochod2 : zmienne
+    {
+        double wynik,wynik2,wynik3;
+        public void Wyswietl()
+        {
+            Create();
+        }
+        public Samochod2()
+        {
+            pojemnoscSilnika = 250;
+            nrVIN = "5060793";
+            rocznik = 2004;
+            nazwa = "Mercedes";
+            srednieSpalanie = 8;
+            dlugosctrasy = 120;
+        }
+        public void Create()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Konstruktor domyslny dla samochodu nr 2: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Pojemnosc silnika: {0}", pojemnoscSilnika);
+            Console.WriteLine("nrVIN: {0}", nrVIN);
+            Console.WriteLine("Rocznik: {0}", rocznik);
+            Console.WriteLine("Nazwa: {0}", nazwa);
+            Console.WriteLine("Srednie spalanie (na 100km) : {0}", srednieSpalanie);
+            Console.ResetColor();
+        }
+        public void ObliczSpalanie()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wyliczenie sredniego spalania dla samochodu nr 2 (typ trasy 0.8): ");
+            wynik = srednieSpalanie * dlugosctrasy * 0.8;
+            Console.ResetColor();
+            Console.WriteLine("Wynik dla spalania: {0} ", wynik);
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wyliczenie sredniego spalania dla samochodu nr 2 (typ trasy 1): ");
+            wynik2 = srednieSpalanie * dlugosctrasy * 1;
+            Console.ResetColor();
+            Console.WriteLine("Wynik dla spalania: {0} ", wynik2);
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Wyliczenie sredniego spalania dla samochodu nr 2 (typ trasy 1.3): ");
+            wynik3 = srednieSpalanie * dlugosctrasy * 1.3;
+            Console.ResetColor();
+            Console.WriteLine("Wynik dla spalania: {0} ", wynik3);
+            Console.ResetColor();
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Samochod: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Samochod 1");
+            Console.WriteLine("[B] - Samochod 2");
+            Console.WriteLine("[C] - Wybieranie trasy i obliczenie spalania");
+            Console.WriteLine("[K] - Wyjscie");
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+
+
+                    Samochod sam1 = new Samochod();
+                    sam1.Wyswietl();
+                    goto poczatek;
+                    break;
+
+
+                case "b":
+                case "B":
+
+                    Samochod2 sam2 = new Samochod2();
+                    sam2.Wyswietl();
+                    goto poczatek;
+                    break;
+
+                case "c":
+                case "C":
+
+
+                    goto made;
+                    break;
+
+                case "k":
+                case "K":
+                    Application.Exit();
+                    break;
+
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+            }
+
+            made:
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Wybierz typ trasy: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Srednie spalanie dla poszczegolnych tras");
+            Console.WriteLine("[F] - Powrot do MENU");
+            Console.WriteLine("[G] - Wyjscie z programu");
+            Console.ResetColor();
+            string litera2 = Console.ReadLine();
+            switch (litera2)
+            {
+                case "a":
+                case "A":
+
+                    Samochod sam3 = new Samochod();
+                    sam3.ObliczSpalanie();
+                    Samochod2 sam4 = new Samochod2();
+                    sam4.ObliczSpalanie();
+                    goto poczatek;
+                    break;
+                
+                case "b":
+                case "B":
+
+
+                    goto poczatek;
+                    break;
+                case "g":
+                case "G":
+                    Application.Exit();
+                    break;
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto made;
+                    break;
+
+
+            } Console.ReadKey();
+        }
+    }
+}
