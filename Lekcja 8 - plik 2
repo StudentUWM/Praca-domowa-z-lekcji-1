@@ -1,0 +1,688 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Runtime.Serialization;
+
+namespace ConsoleApplication30
+{
+    public class ciagulamkowyException : System.Exception
+    {
+        public ciagulamkowyException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla ciagu ulamkowego wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+
+        }
+        public ciagulamkowyException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public ciagulamkowyException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+    public class dzielenieException : System.Exception
+    {
+        public dzielenieException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla dzielenia wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+
+        }
+        public dzielenieException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public dzielenieException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+    public class mnozenieException : System.Exception
+    {
+        public mnozenieException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla mnozenia wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+        }
+        public mnozenieException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public mnozenieException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+    public class SumaCiaguException : System.Exception
+    {
+
+        public SumaCiaguException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla sumy ciagu wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+        }
+        public SumaCiaguException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public SumaCiaguException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+    public class OdejmowanieException : System.Exception
+    {
+
+        public OdejmowanieException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla odejmowania wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+        }
+        public OdejmowanieException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public OdejmowanieException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+    public class SilniaException : System.Exception
+    {
+
+        public SilniaException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla silni wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+        }
+        public SilniaException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public SilniaException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+    public class DodawanieException : System.Exception
+    {
+
+        public DodawanieException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla dodawania wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+        }
+        public DodawanieException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public DodawanieException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+
+
+    public class PotegaException : System.Exception
+    {
+
+        public PotegaException(string Message)
+            : base(Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Podczas wykonywania kodu dla potegi wystapil blad, sprobuj ponownie: ");
+            Console.ResetColor();
+        }
+        public PotegaException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+        public PotegaException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
+
+    class zmienne : calc
+    {
+        public void WyswietlWynik() { }
+        protected double liczba1, liczba2, wynik, i;
+        public double Liczba1 { get { return this.liczba1; } set { this.liczba1 = value; } }
+        public double Liczba2 { get { return this.liczba2; } set { this.liczba2 = value; } }
+        virtual public void Wyswietl()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Praca z kalkulatorem");
+            Console.ResetColor();
+        }
+    }
+    interface calc
+    {
+        void WyswietlWynik();
+        void Wyswietl();
+    }
+    class dodawanie : zmienne
+    {
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            DodawanieLicz();
+        }
+        public void DodawanieLicz()
+        {
+            try
+            {
+                wynik = liczba1 + liczba2;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Wynik dodawania liczb {0} i {1} = {2}", liczba1, liczba2, wynik);
+                Console.ResetColor();
+            }
+            catch (Exception e)
+            {
+                DodawanieException wyjatekdod = new DodawanieException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do liczenia dodawania");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+    class odejmowanie : zmienne
+    {
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            OdejmowanieLicz();
+        }
+        public void OdejmowanieLicz()
+        {
+            try
+            {
+                wynik = liczba1 - liczba2;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Wynik odejmowania liczb {0} i {1} = {2}", liczba1, liczba2, wynik);
+                Console.ResetColor();
+            }
+            catch (Exception e)
+            {
+                OdejmowanieException wyjatekodej = new OdejmowanieException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do liczenia odejmowania");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+    class SumaCiagu : zmienne
+    {
+
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            SumaCiaguLicz();
+        }
+        public void SumaCiaguLicz()
+        {
+            wynik = 0;
+            liczba1 = 0;
+            try
+            {
+                do
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Podaj liczby do sumowania. Zero zakonczy dzialanie");
+                    liczba1 = double.Parse(Console.ReadLine());
+                    wynik = wynik + liczba1;
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Wynik sumowania: ");
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(wynik);
+
+                }
+                while (liczba1 != 0);
+            }
+            catch (Exception e)
+            {
+                SumaCiaguException wyjatekciagu = new SumaCiaguException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do liczenia sumy ciagu zakonczonego zerem");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+    class Silnia : zmienne
+    {
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            SilniaLicz();
+        }
+        public void SilniaLicz()
+        {
+            wynik = 1;
+            try
+            {
+                if (liczba1 < 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Silnia nie moze byc liczona z liczby ujemnej, sprobuj ponownie: ");
+                    Console.ResetColor();
+                }
+                if (liczba1 == 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Silnia z 0 wynosi 1 ");
+                    Console.ResetColor();
+                }
+                if (liczba1 > 0)
+                {
+                    for (i = 1; i <= liczba1; i++)
+                    {
+                        wynik *= i;
+                    }
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Silnia z liczby {0} wynosi {1} ", liczba1, wynik);
+                    Console.ResetColor();
+                }
+            }
+            catch (Exception e)
+            {
+                SilniaException wyjateksilni = new SilniaException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do liczenia silni");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+
+    class Potega : zmienne
+    {
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            PotegaLicz();
+        }
+        public void PotegaLicz()
+        {
+            wynik = 1;
+            try
+            {
+
+                if (liczba1 == 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Liczba 0 podniesiona do potegi {0} wynosi 0", liczba2);
+                    Console.ResetColor();
+                }
+                if (liczba2 == 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Liczba {0} podniesiona do potegi 0 wynosi 1", liczba1);
+                    Console.ResetColor();
+                }
+                if (liczba1 < 0 || liczba2 < 0)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Wprowadzono liczbe ujemna, sprobuj ponownie: ");
+                    Console.ResetColor();
+                }
+
+                if (liczba1 > 0 && liczba2 > 0)
+                {
+                    for (i = liczba2; i > 0; i--)
+                    {
+                        wynik = wynik * liczba1;
+                    }
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Liczba {0} do potegi {1} wynosi {2} ", liczba1, liczba2, wynik);
+                    Console.ResetColor();
+                }
+            }
+            catch (Exception e)
+            {
+                PotegaException wyjatekpotegi = new PotegaException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do liczenia potegi");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+    class mnozenie : zmienne
+    {
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            mnozenieLicz();
+        }
+        public void mnozenieLicz()
+        {
+            try
+            {
+                wynik = liczba1 * liczba2;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Wynik mnozenia liczb {0} i {1} = {2}", liczba1, liczba2, wynik);
+                Console.ResetColor();
+            }
+            catch (Exception e)
+            {
+                mnozenieException wyjatekmnoz = new mnozenieException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do liczenia mnozenia");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+    class dzielenie : zmienne
+    {
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            dzielenieLicz();
+        }
+
+        public void dzielenieLicz()
+        {
+            try
+            {
+                wynik = liczba1 / liczba2;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Wynik dzielenia liczby {0} przez {1} = {2}", liczba1, liczba2, wynik);
+                Console.ResetColor();
+
+            }
+            catch (Exception e)
+            {
+                dzielenieException wyjatekdziel = new dzielenieException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do dzielenia");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+    class ciagulamkowy : zmienne
+    {
+
+        public override void Wyswietl()
+        {
+            base.Wyswietl();
+        }
+        public void WyswietlWynik()
+        {
+            Wyswietl();
+            ciagulamkowyLicz();
+        }
+        public void ciagulamkowyLicz()
+        {
+            wynik = 0;
+            liczba1 = 0;
+            try
+            {
+                do
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Podaj liczby do sumowania. Zero zakonczy dzialanie. Suma ciagu ulamkowego");
+                    Console.WriteLine("Podaj licznik (wprowadzenie tutaj zera zakonczy dzialanie zliczania sumy):");
+                    liczba1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj mianownik:");
+                    liczba2 = double.Parse(Console.ReadLine());
+                    wynik = wynik + (liczba1 / liczba2);
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("Wynik sumowania: ");
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(wynik);
+
+                }
+                while (liczba1 != 0);
+            }
+            catch (Exception e)
+            {
+                ciagulamkowyException wyjatekciag = new ciagulamkowyException(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine(" ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FINALLY - dzialanie wlasnego wyjatku w kodzie do sumy ciagu ulamkowego");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        poczatek:
+
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Kalkulator i wyjatki: ");
+            Console.ResetColor();
+            Console.WriteLine(" ");
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("[A] - Silnia");
+            Console.WriteLine("[B] - Potega");
+            Console.WriteLine("[C] - Dodawanie");
+            Console.WriteLine("[D] - Odejmowanie");
+            Console.WriteLine("[E] - Suma ciagu zakonczonego zerem");
+            Console.WriteLine("[F] - mnozenie");
+            Console.WriteLine("[G] - dzielenie");
+            Console.WriteLine("[H] - Suma ciagu ulamkowego");
+            Console.WriteLine("[K] - Wyjscie");
+            Console.ResetColor();
+            string litera = Console.ReadLine();
+
+            switch (litera)
+            {
+                case "a":
+                case "A":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Silnia silnia = new Silnia();
+                    Console.WriteLine("Podaj liczbe: ");
+                    Console.ResetColor();
+                    silnia.Liczba1 = double.Parse(Console.ReadLine());
+                    silnia.WyswietlWynik();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "b":
+                case "B":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Potega potega = new Potega();
+                    Console.WriteLine("Podaj liczbe ktora bedzie podnoszona do jakies potegi: ");
+                    potega.Liczba1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podana wczesniej liczba ma zostac podniesiona do potegi? (wprowadz liczbe) : ");
+                    potega.Liczba2 = double.Parse(Console.ReadLine());
+                    Console.ResetColor();
+                    potega.WyswietlWynik();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "c":
+                case "C":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    dodawanie add = new dodawanie();
+                    Console.WriteLine("Podaj liczbe pierwsza: ");
+                    add.Liczba1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj liczbe druga: ");
+                    add.Liczba2 = double.Parse(Console.ReadLine());
+                    Console.ResetColor();
+                    add.WyswietlWynik();
+                    goto poczatek;
+                    break;
+
+                case "d":
+                case "D":
+
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    odejmowanie min = new odejmowanie();
+                    Console.WriteLine("Podaj liczbe pierwsza: ");
+                    min.Liczba1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj liczbe druga: ");
+                    min.Liczba2 = double.Parse(Console.ReadLine());
+                    Console.ResetColor();
+                    min.WyswietlWynik();
+                    goto poczatek;
+                    break;
+
+
+                case "e":
+                case "E":
+
+
+                    SumaCiagu sumaciagu = new SumaCiagu();
+                    sumaciagu.WyswietlWynik();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "f":
+                case "F":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    mnozenie mn = new mnozenie();
+                    Console.WriteLine("Podaj liczbe pierwsza: ");
+                    mn.Liczba1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj liczbe druga: ");
+                    mn.Liczba2 = double.Parse(Console.ReadLine());
+                    Console.ResetColor();
+                    mn.WyswietlWynik();
+                    goto poczatek;
+                    break;
+
+                case "g":
+                case "G":
+
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    dzielenie dziel = new dzielenie();
+                    Console.WriteLine("Podaj liczbe pierwsza: ");
+                    dziel.Liczba1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj liczbe druga: ");
+                    dziel.Liczba2 = double.Parse(Console.ReadLine());
+                    Console.ResetColor();
+                    dziel.WyswietlWynik();
+                    goto poczatek;
+                    break;
+
+                case "h":
+                case "H":
+
+                    ciagulamkowy ciag = new ciagulamkowy();
+                    ciag.WyswietlWynik();
+                    Console.ResetColor();
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    goto poczatek;
+                    break;
+
+                case "k":
+                case "K":
+
+                    Application.Exit();
+                    break;
+
+
+                default:
+                    Console.WriteLine("Wybrana przez Ciebie litera nie jest prawidlowa");
+                    goto poczatek;
+                    break;
+
+            } Console.ReadKey();
+        }
+    }
+}
